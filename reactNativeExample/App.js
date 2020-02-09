@@ -20,12 +20,43 @@ const Stack = createStackNavigator();
 
 enableScreens();
 
+const headerStyle = {
+  // можливо персонально міняти любий параметр для Stack.Screen
+  // headerStyle: {
+  //   backgroundColor: '#f4511e',
+  // },
+  // headerTintColor: '#fff',
+  // headerTitleStyle: {
+  //   fontWeight: 'bold',
+  // },
+};
+
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="Main" component={MainScreen} />
-        <Stack.Screen name="Charts" component={ChartsScreen} />
+      <Stack.Navigator
+        initialRouteName="Main"
+        screenOptions={{
+          // глобально для Stack.Navigator
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{title: 'Slider scroll', ...headerStyle}}
+        />
+        <Stack.Screen
+          name="Charts"
+          component={ChartsScreen}
+          options={{title: 'Charts', ...headerStyle}}
+          initialParams={{from: 'App'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

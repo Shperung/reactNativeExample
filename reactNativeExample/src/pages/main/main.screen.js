@@ -13,7 +13,14 @@ const MainScreen = props => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>MainScreen</Text>
-      <Button title="Charts" onPress={() => navigation.navigate('Charts')} />
+      <Button
+        title="Charts"
+        onPress={() =>
+          navigation.navigate('Charts', {
+            from: 'main',
+          })
+        }
+      />
     </View>
   );
 };
