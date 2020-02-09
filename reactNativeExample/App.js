@@ -11,14 +11,15 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // screens
 import MainScreen from './src/pages/main/main.screen';
 import ChartsScreen from './src/pages/charts/charts.screen';
+import LoaderScreen from './src/pages/loader/loader.screen';
 
 const Stack = createStackNavigator();
-
-enableScreens();
+const Tab = createBottomTabNavigator();
 
 const headerStyle = {
   // можливо персонально міняти любий параметр для Stack.Screen
@@ -31,11 +32,23 @@ const headerStyle = {
   // },
 };
 
+enableScreens();
+
+function Tabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Main" component={MainScreen} />
+      <Tab.Screen name="Charts" component={ChartsScreen} />
+      <Tab.Screen name="Loader" component={LoaderScreen} />
+    </Tab.Navigator>
+  );
+}
+
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Main"
+        initialRouteName="Tabs"
         screenOptions={{
           // глобально для Stack.Navigator
           headerStyle: {
@@ -46,6 +59,11 @@ const App = () => {
             fontWeight: 'bold',
           },
         }}>
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{title: 'Slider scroll', ...headerStyle}}
+        />
         <Stack.Screen
           name="Main"
           component={MainScreen}

@@ -8,14 +8,11 @@ import {
   StatusBar,
 } from 'react-native';
 
-const ChartsScreen = props => {
+const LoaderScreen = props => {
   const {navigation, route} = props;
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>ChartsScreen</Text>
-      {route.params && route.params.from ? (
-        <Text>from {JSON.stringify(route.params.from)}</Text>
-      ) : null}
+      <Text>LoaderScreen</Text>
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <Button
         title="Update the title"
@@ -25,4 +22,4 @@ const ChartsScreen = props => {
   );
 };
 
-export default ChartsScreen;
+export default LoaderScreen;
