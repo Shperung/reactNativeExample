@@ -10,46 +10,22 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {enableScreens} from 'react-native-screens';
 
-function DetailsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
-
-function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>HomeScreen</Text>
-      <Button
-        title="Go to Home... again"
-        onPress={() => navigation.push('Home')}
-      />
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Details')}
-      />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
-  );
-}
+// screens
+import MainScreen from './src/pages/main/main.screen';
+import ChartsScreen from './src/pages/charts/charts.screen';
 
 const Stack = createStackNavigator();
+
+enableScreens();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Details">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="Charts" component={ChartsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
