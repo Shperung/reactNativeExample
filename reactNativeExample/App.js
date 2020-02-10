@@ -23,6 +23,9 @@ import HomeIcon from './src/svg/assets/home.svg';
 import CoinsIcon from './src/svg/assets/coins.svg';
 import LoadingIcon from './src/svg/assets/loading.svg';
 
+// mixins
+import mixins from './src/app/mixins.js';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -41,26 +44,50 @@ enableScreens();
 
 function Tabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      tabBarOptions={{
+        activeTintColor: mixins.color.tomato,
+      }}>
       <Tab.Screen
         name="Main"
         component={MainScreen}
         options={{
-          tabBarIcon: () => <HomeIcon width={32} height={32} fill="blue" />,
+          tabBarIcon: ({color}) => (
+            <HomeIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
         }}
       />
       <Tab.Screen
         name="Charts"
         component={ChartsScreen}
         options={{
-          tabBarIcon: () => <CoinsIcon width={32} height={32} fill="blue" />,
+          tabBarIcon: ({color}) => (
+            <CoinsIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
         }}
       />
       <Tab.Screen
         name="Loader"
         component={LoaderScreen}
         options={{
-          tabBarIcon: () => <LoadingIcon width={32} height={32} fill="blue" />,
+          tabBarIcon: ({color}) => (
+            <LoadingIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
         }}
       />
     </Tab.Navigator>
@@ -75,9 +102,9 @@ const App = () => {
         screenOptions={{
           // глобально для Stack.Navigator
           headerStyle: {
-            backgroundColor: '#f4511e',
+            backgroundColor: mixins.color.tomato,
           },
-          headerTintColor: '#fff',
+          headerTintColor: mixins.color.white,
           headerTitleStyle: {
             fontWeight: 'bold',
           },
