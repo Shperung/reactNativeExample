@@ -18,6 +18,11 @@ import MainScreen from './src/pages/main/main.screen';
 import ChartsScreen from './src/pages/charts/charts.screen';
 import LoaderScreen from './src/pages/loader/loader.screen';
 
+// icons
+import HomeIcon from './src/svg/assets/home.svg';
+import CoinsIcon from './src/svg/assets/coins.svg';
+import LoadingIcon from './src/svg/assets/loading.svg';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -37,9 +42,27 @@ enableScreens();
 function Tabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Main" component={MainScreen} />
-      <Tab.Screen name="Charts" component={ChartsScreen} />
-      <Tab.Screen name="Loader" component={LoaderScreen} />
+      <Tab.Screen
+        name="Main"
+        component={MainScreen}
+        options={{
+          tabBarIcon: () => <HomeIcon width={32} height={32} fill="blue" />,
+        }}
+      />
+      <Tab.Screen
+        name="Charts"
+        component={ChartsScreen}
+        options={{
+          tabBarIcon: () => <CoinsIcon width={32} height={32} fill="blue" />,
+        }}
+      />
+      <Tab.Screen
+        name="Loader"
+        component={LoaderScreen}
+        options={{
+          tabBarIcon: () => <LoadingIcon width={32} height={32} fill="blue" />,
+        }}
+      />
     </Tab.Navigator>
   );
 }
