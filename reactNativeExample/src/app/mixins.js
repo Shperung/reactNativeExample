@@ -1,3 +1,17 @@
+import {Dimensions, Platform, PixelRatio} from 'react-native';
+
+export const DEVICE_WIDTH = Dimensions.get('window').width;
+export const DEVICE_HEIGHT = Dimensions.get('window').height;
+export const SMALL_DEVICE = DEVICE_WIDTH < 375;
+export const MIDDLE_DEVICE = DEVICE_WIDTH >= 375 && DEVICE_WIDTH < 414;
+export const BIG_DEVICE = DEVICE_WIDTH >= 414;
+export const STATUS_BAR_HEIGHT = 20;
+export const IS_IOS = Platform.OS === 'ios';
+export const IS_ANDROID = Platform.OS === 'android';
+export const PIXEL_RATIO_1X = PixelRatio.get() < 2;
+export const PIXEL_RATIO_BORDER = IS_IOS ? 0.5 : 1;
+export const DEFAULT_BOTTOM_NAVIGATION_HEIGHT = 60;
+export const ANDOID_STATUSBAR_VERSION = 6;
 export const REGEX_EMAIL = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const REGEX_PHONE = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/;
 
