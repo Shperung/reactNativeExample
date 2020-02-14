@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Image,
-  Button,
+  Easing,
   View,
   Text,
   Animated,
@@ -29,6 +29,7 @@ const MainScreen = props => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
       useNativeDriver: true,
+      easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);
 
