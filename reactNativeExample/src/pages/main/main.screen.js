@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -12,25 +12,44 @@ import {
 // icons
 import ClosedIcon from '../../svg/assets/closed.svg';
 
+// constants
+import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+
 // styles
 import styles from './main.screen.style.js';
 
+export const WIDTH_MAX = DEVICE_WIDTH * 2;
+export const WIDTH_MIN = DEVICE_WIDTH;
+
 const MainScreen = props => {
   const {navigation} = props;
-  const [scrollViewValue, setScrollViewValue] = useState(0);
+  const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.timing(scrollViewValue, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
+  }, [scrollViewValue]);
+
+  const scollWidth = scrollViewValue.interpolate({
+    inputRange: [0, DEVICE_WIDTH],
+    outputRange: [0, -DEVICE_WIDTH],
+    extrapolate: 'clamp',
+  });
 
   return (
     <View style={styles.container}>
       <ScrollView>
         <ScrollView
-          horizontal
           snapToOffsets={[1]}
-          //disableScrollViewPanResponder
           style={styles.scrollViewHorizontal}
+          scrollEventThrottle={16}
           alwaysBounceHorizontal
           onScroll={Animated.event([
-            {nativeEvent: {contentOffset: {y: setScrollViewValue}}},
-          ])}>
+            {nativeEvent: {contentOffset: {x: scrollViewValue}}},
+          ])}
+          horizontal>
           <View style={styles.banerItem}>
             <Text>
               <ClosedIcon width={26} height={26} fill="green" />
@@ -46,7 +65,11 @@ const MainScreen = props => {
             />
           </View>
         </ScrollView>
-        <View style={styles.tabsWrap}>
+        <Animated.View
+          style={[
+            styles.tabsWrap,
+            {marginLeft: 0, transform: [{translateX: scollWidth}]},
+          ]}>
           <View style={styles.tabs}>
             <View style={styles.tabLeft}>
               <Text>tabLeft</Text>
@@ -76,7 +99,7 @@ const MainScreen = props => {
               <Text>tabRight</Text>
             </View>
           </View>
-        </View>
+        </Animated.View>
       </ScrollView>
     </View>
   );
