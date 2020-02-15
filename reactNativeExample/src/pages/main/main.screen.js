@@ -39,6 +39,18 @@ const MainScreen = props => {
     extrapolate: 'clamp',
   });
 
+  // const imageIndent = scrollViewValue.interpolate({
+  //   inputRange: [0, 200],
+  //   outputRange: [-200, 0],
+  //   extrapolate: 'clamp',
+  // });
+
+  const imageIndent = scrollViewValue.interpolate({
+    inputRange: [0, 300],
+    outputRange: [(-300 / Math.PI) * 2, 0],
+    extrapolate: 'clamp',
+  });
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -58,19 +70,23 @@ const MainScreen = props => {
             </Text>
           </View>
           <View style={styles.banerItem}>
-            <Image
-              style={styles.banerImg}
-              source={{
-                uri: 'https://99px.ru/sstorage/53/2016/12/tmb_186070_6870.jpg',
-              }}
-            />
+            <Animated.View
+              style={[
+                styles.banerImgWrap,
+                {transform: [{translateX: imageIndent}]},
+              ]}>
+              <Image
+                style={styles.banerImg}
+                source={{
+                  uri:
+                    'https://99px.ru/sstorage/53/2016/12/tmb_186070_6870.jpg',
+                }}
+              />
+            </Animated.View>
           </View>
         </ScrollView>
         <Animated.View
-          style={[
-            styles.tabsWrap,
-            {marginLeft: 0, transform: [{translateX: scollWidth}]},
-          ]}>
+          style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
             <View style={styles.tabLeft}>
               <Text>tabLeft</Text>
@@ -84,6 +100,21 @@ const MainScreen = props => {
           </View>
 
           <View style={styles.tabs}>
+            <View style={styles.tabRight}>
+              <Text>tabRight</Text>
+            </View>
+            <View style={styles.tabRight}>
+              <Text>tabRight</Text>
+            </View>
+            <View style={styles.tabRight}>
+              <Text>tabRight</Text>
+            </View>
+            <View style={styles.tabRight}>
+              <Text>tabRight</Text>
+            </View>
+            <View style={styles.tabRight}>
+              <Text>tabRight</Text>
+            </View>
             <View style={styles.tabRight}>
               <Text>tabRight</Text>
             </View>
