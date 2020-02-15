@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+import {DC_WIDTH} from '../../app/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,15 +13,7 @@ const styles = StyleSheet.create({
   scrollViewHorizontal: {
     width: DEVICE_WIDTH,
     overflow: 'hidden',
-    // backgroundColor: mixins.color.tomato,
     padding: 16,
-  },
-  baner: {
-    backgroundColor: mixins.color.orangeDarck,
-    height: 300,
-    width: DEVICE_WIDTH,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   tabsWrap: {
     width: DEVICE_WIDTH,
@@ -46,8 +39,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
   banerImg: {
-    width: 300,
+    width: DC_WIDTH,
     height: 200,
+    borderRadius: 32,
+    opacity: 0.8,
   },
   banerItem: {
     width: DEVICE_WIDTH,

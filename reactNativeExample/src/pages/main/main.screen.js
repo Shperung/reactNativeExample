@@ -12,8 +12,12 @@ import {
 // icons
 import ClosedIcon from '../../svg/assets/closed.svg';
 
+// assets
+import FlyImage from '../../app/img/fly.jpg';
+
 // constants
 import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+import {DC_WIDTH} from '../../app/constants';
 
 // components
 import InfoBlock from '../../decoration/info.block';
@@ -24,6 +28,8 @@ import styles from './main.screen.style.js';
 export const WIDTH_MAX = DEVICE_WIDTH * 2;
 export const WIDTH_MIN = DEVICE_WIDTH;
 
+const outputRangeOffset = (-DC_WIDTH / Math.PI) * 1.2;
+
 const MainScreen = props => {
   const {navigation} = props;
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
@@ -31,7 +37,7 @@ const MainScreen = props => {
   useEffect(() => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
-      //useNativeDriver: true,
+      // useNativeDriver: true,
       easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);
@@ -43,14 +49,14 @@ const MainScreen = props => {
   });
 
   const imageIndent = scrollViewValue.interpolate({
-    inputRange: [0, 300],
-    outputRange: [(-300 / Math.PI) * 2, 0],
+    inputRange: [0, DC_WIDTH],
+    outputRange: [outputRangeOffset, -16],
     extrapolate: 'clamp',
   });
 
   const scrollBgc = scrollViewValue.interpolate({
     inputRange: [0, DEVICE_WIDTH],
-    outputRange: [mixins.color.tomato, mixins.color.yellow],
+    outputRange: [mixins.color.green, mixins.color.greenToxik],
     extrapolate: 'clamp',
   });
 
@@ -69,7 +75,7 @@ const MainScreen = props => {
           <View style={styles.banerItem}>
             <Text>
               <ClosedIcon width={26} height={26} fill="green" />
-              Клубна карта
+              {DC_WIDTH}
             </Text>
           </View>
           <View style={styles.banerItem}>
@@ -78,13 +84,7 @@ const MainScreen = props => {
                 styles.banerImgWrap,
                 {transform: [{translateX: imageIndent}]},
               ]}>
-              <Image
-                style={styles.banerImg}
-                source={{
-                  uri:
-                    'https://99px.ru/sstorage/53/2016/12/tmb_186070_6870.jpg',
-                }}
-              />
+              <Image style={styles.banerImg} source={FlyImage} />
             </Animated.View>
           </View>
         </ScrollView>

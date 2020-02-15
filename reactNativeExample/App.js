@@ -46,7 +46,7 @@ function Tabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: mixins.color.tomato,
+        activeTintColor: mixins.color.green,
       }}>
       <Tab.Screen
         name="Main"
@@ -102,7 +102,7 @@ const App = () => {
         screenOptions={{
           // глобально для Stack.Navigator
           headerStyle: {
-            backgroundColor: mixins.color.tomato,
+            backgroundColor: mixins.color.green,
           },
           headerTintColor: mixins.color.white,
           headerTitleStyle: {

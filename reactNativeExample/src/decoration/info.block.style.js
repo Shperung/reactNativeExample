@@ -3,12 +3,6 @@ import {StyleSheet} from 'react-native';
 import mixins from '../app/mixins';
 
 const styles = StyleSheet.create({
-  avatarImg: {
-    width: 52,
-    height: 52,
-    borderRadius: 32,
-    marginRight: 16,
-  },
   block: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -23,9 +17,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
-    backgroundColor: mixins.color.grayLight,
+    backgroundColor: mixins.color.white06,
   },
   textHeading: {
     fontWeight: 'bold',
@@ -34,6 +27,9 @@ const styles = StyleSheet.create({
   },
   textSmall: {
     color: mixins.color.gray,
+  },
+  infoTextBlock: {
+    marginLeft: 16,
   },
 });
 
