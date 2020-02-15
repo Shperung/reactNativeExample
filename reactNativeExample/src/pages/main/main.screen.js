@@ -15,6 +15,9 @@ import ClosedIcon from '../../svg/assets/closed.svg';
 // constants
 import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
 
+// components
+import InfoBlock from '../../decoration/info.block';
+
 // styles
 import styles from './main.screen.style.js';
 
@@ -88,6 +91,9 @@ const MainScreen = props => {
         <Animated.View
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
+            <InfoBlock />
+            <InfoBlock />
+            <InfoBlock />
             <View style={styles.tabLeft}>
               <Text>tabLeft</Text>
             </View>
