@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
   },
   tabs: {
     width: '100%',
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   tabLeft: {
     width: '100%',

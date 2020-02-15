@@ -94,48 +94,12 @@ const MainScreen = props => {
             <InfoBlock />
             <InfoBlock />
             <InfoBlock />
-            <View style={styles.tabLeft}>
-              <Text>tabLeft</Text>
-            </View>
-            <View style={styles.tabLeft}>
-              <Text>tabLeft</Text>
-            </View>
-            <View style={styles.tabLeft}>
-              <Text>tabLeft</Text>
-            </View>
           </View>
 
           <View style={styles.tabs}>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
-            <View style={styles.tabRight}>
-              <Text>tabRight</Text>
-            </View>
+            <InfoBlock />
+            <InfoBlock />
+            <InfoBlock />
           </View>
         </Animated.View>
       </ScrollView>
