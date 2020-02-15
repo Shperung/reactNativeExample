@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -34,14 +34,36 @@ const outputRangeOffset = (-DC_WIDTH / Math.PI) * 1.2;
 const MainScreen = props => {
   const {navigation} = props;
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
+  const [scrollY, setScrollY] = useState(new Animated.Value(0));
 
   useEffect(() => {
+    Animated.sequence([
+      Animated.timing(scrollY, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+        easing: Easing.sin,
+      }),
+    ]).start();
+  }, []);
+
+  useLayoutEffect(() => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
       // useNativeDriver: true,
       easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);
+
+  const changeTransitionYTop = scrollY.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-80, 0],
+  });
+
+  const changeOpacityYTop = scrollY.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.8, 1],
+  });
 
   const scollWidth = scrollViewValue.interpolate({
     inputRange: [0, DEVICE_WIDTH],
@@ -73,7 +95,15 @@ const MainScreen = props => {
             {nativeEvent: {contentOffset: {x: scrollViewValue}}},
           ])}
           horizontal>
-          <View style={[styles.banerItem, styles.banerItemFirst]}>
+          <Animated.View
+            style={[
+              styles.banerItem,
+              styles.banerItemFirst,
+              {
+                transform: [{translateY: changeTransitionYTop}],
+                opacity: changeOpacityYTop,
+              },
+            ]}>
             <View style={styles.bioWrap}>
               <AvatarBlock size={72} />
               <View style={styles.bioTextWrap}>
@@ -97,8 +127,8 @@ const MainScreen = props => {
                 </Text>
               </View>
             </View>
-          </View>
-          <View style={styles.banerItem}>
+          </Animated.View>
+          <Animated.View style={styles.banerItem}>
             <Animated.View
               style={[
                 styles.banerImgWrap,
@@ -106,20 +136,20 @@ const MainScreen = props => {
               ]}>
               <Image style={styles.banerImg} source={FlyImage} />
             </Animated.View>
-          </View>
+          </Animated.View>
         </ScrollView>
         <Animated.View
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
-            <InfoBlock />
-            <InfoBlock />
-            <InfoBlock />
+            {[...new Array(3)].map((item, i) => (
+              <InfoBlock key={`a-${i}`} index={i} />
+            ))}
           </View>
 
           <View style={styles.tabs}>
-            <InfoBlock />
-            <InfoBlock />
-            <InfoBlock />
+            {[...new Array(3)].map((item, i) => (
+              <InfoBlock key={i} index={i} />
+            ))}
           </View>
         </Animated.View>
       </ScrollView>
