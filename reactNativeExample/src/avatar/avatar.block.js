@@ -12,10 +12,11 @@ import styles from './avatar.block.style';
 
 const avatars = [AvatarImage, AvatarImage2, AvatarImage3, AvatarImage4];
 
-const AvatarBlock = () => {
+const AvatarBlock = props => {
+  const {size = 52} = props;
   return (
     <Image
-      style={styles.avatarImg}
+      style={[styles.avatarImg, {width: size, height: size}]}
       source={avatars[Math.floor(Math.random() * avatars.length)]}
     />
   );

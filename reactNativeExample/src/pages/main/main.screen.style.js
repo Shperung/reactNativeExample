@@ -50,6 +50,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  banerItemFirst: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  bioWrap: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 16,
+    backgroundColor: mixins.color.white08,
+    borderRadius: 32,
+    height: '100%',
+  },
+  bioTextWrap: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 16,
+  },
+  bio: {
+    fontSize: 18,
+  },
+  bioBold: {
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

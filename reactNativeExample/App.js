@@ -112,12 +112,12 @@ const App = () => {
         <Stack.Screen
           name="Tabs"
           component={Tabs}
-          options={{title: 'Slider scroll', ...headerStyle}}
+          options={{title: 'Cat bio', ...headerStyle}}
         />
         <Stack.Screen
           name="Main"
           component={MainScreen}
-          options={{title: 'Slider scroll', ...headerStyle}}
+          options={{title: 'Cat bio', ...headerStyle}}
         />
         <Stack.Screen
           name="Charts"

@@ -21,6 +21,7 @@ import {DC_WIDTH} from '../../app/constants';
 
 // components
 import InfoBlock from '../../decoration/info.block';
+import AvatarBlock from '../../avatar/avatar.block';
 
 // styles
 import styles from './main.screen.style.js';
@@ -72,11 +73,30 @@ const MainScreen = props => {
             {nativeEvent: {contentOffset: {x: scrollViewValue}}},
           ])}
           horizontal>
-          <View style={styles.banerItem}>
-            <Text>
-              <ClosedIcon width={26} height={26} fill="green" />
-              {DC_WIDTH}
-            </Text>
+          <View style={[styles.banerItem, styles.banerItemFirst]}>
+            <View style={styles.bioWrap}>
+              <AvatarBlock size={72} />
+              <View style={styles.bioTextWrap}>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Name</Text> - Murzik
+                </Text>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Age</Text> - 1
+                </Text>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Weight</Text> - 1.5kg
+                </Text>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Color</Text> - black
+                </Text>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Legs</Text> - 4
+                </Text>
+                <Text style={styles.bio}>
+                  <Text style={styles.bioBold}>Tail</Text> - 1
+                </Text>
+              </View>
+            </View>
           </View>
           <View style={styles.banerItem}>
             <Animated.View
