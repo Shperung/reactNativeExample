@@ -9,23 +9,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: DEVICE_WIDTH,
   },
-  customHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: mixins.color.graphite,
-    height: 80,
-  },
-  customHeaderText: {
-    color: mixins.color.white,
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: 'bold',
-    paddingTop: 12,
-  },
   scrollViewHorizontal: {
     width: DEVICE_WIDTH,
     overflow: 'hidden',
+    // backgroundColor: mixins.color.tomato,
+    padding: 16,
   },
   baner: {
     backgroundColor: mixins.color.orangeDarck,

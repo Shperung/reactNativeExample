@@ -42,6 +42,7 @@ const mixins = {
     grayMiddle: '#E5E5EA',
     black: '#000',
     orange: '#FBCB69',
+    yellow: '#ffa21f',
     green: '#31D19E',
   },
   font: {

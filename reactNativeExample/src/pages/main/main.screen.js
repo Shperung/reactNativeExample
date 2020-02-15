@@ -31,7 +31,7 @@ const MainScreen = props => {
   useEffect(() => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
-      useNativeDriver: true,
+      //useNativeDriver: true,
       easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);
@@ -42,24 +42,24 @@ const MainScreen = props => {
     extrapolate: 'clamp',
   });
 
-  // const imageIndent = scrollViewValue.interpolate({
-  //   inputRange: [0, 200],
-  //   outputRange: [-200, 0],
-  //   extrapolate: 'clamp',
-  // });
-
   const imageIndent = scrollViewValue.interpolate({
     inputRange: [0, 300],
     outputRange: [(-300 / Math.PI) * 2, 0],
     extrapolate: 'clamp',
   });
 
+  const scrollBgc = scrollViewValue.interpolate({
+    inputRange: [0, DEVICE_WIDTH],
+    outputRange: [mixins.color.tomato, mixins.color.yellow],
+    extrapolate: 'clamp',
+  });
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, {backgroundColor: scrollBgc}]}>
       <ScrollView>
         <ScrollView
           snapToOffsets={[1]}
-          style={styles.scrollViewHorizontal}
+          style={[styles.scrollViewHorizontal]}
           scrollEventThrottle={16}
           alwaysBounceHorizontal
           onScroll={Animated.event([
@@ -103,7 +103,7 @@ const MainScreen = props => {
           </View>
         </Animated.View>
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 };
 
