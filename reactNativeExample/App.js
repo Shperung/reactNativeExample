@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,15 +17,17 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MainScreen from './src/pages/main/main.screen';
 import ChartsScreen from './src/pages/charts/charts.screen';
 import LoaderScreen from './src/pages/loader/loader.screen';
+import SettingsScreen from './src/pages/settings/settings.screen';
 
 // icons
 import HomeIcon from './src/svg/assets/home.svg';
 import CoinsIcon from './src/svg/assets/coins.svg';
 import LoadingIcon from './src/svg/assets/loading.svg';
+import SettingsIcon from './src/svg/assets/settings.svg';
 
 // mixins
-import mixins from './src/app/mixins.js';
-import {ThemeProvider} from './src/app/theme-context';
+import mixins, {DARK_THEME} from './src/app/mixins.js';
+import ThemeContext, {ThemeProvider} from './src/app/theme-context';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -91,11 +93,30 @@ function Tabs() {
           ),
         }}
       />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <SettingsIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
 
 const App = () => {
+  // const {theme} = useContext(ThemeContext);
+  // const isDark = theme === DARK_THEME;
+
+  // console.log('App theme', theme);
+
   return (
     <ThemeProvider>
       <NavigationContainer>
@@ -104,7 +125,10 @@ const App = () => {
           screenOptions={{
             // глобально для Stack.Navigator
             headerStyle: {
-              backgroundColor: mixins.color.green,
+              backgroundColor:
+                useContext(ThemeContext).theme === DARK_THEME
+                  ? mixins.color.green
+                  : mixins.color.greenDark,
             },
             headerTintColor: mixins.color.white,
             headerTitleStyle: {
