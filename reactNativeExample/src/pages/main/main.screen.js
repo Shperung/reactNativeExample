@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useEffect, useLayoutEffect, useContext} from 'react';
 import {
   SafeAreaView,
   Image,
@@ -22,6 +22,7 @@ import {DC_WIDTH} from '../../app/constants';
 // components
 import InfoBlock from '../../decoration/info.block';
 import AvatarBlock from '../../avatar/avatar.block';
+import ThemeContext from '../../app/theme-context';
 
 // styles
 import styles from './main.screen.style.js';
@@ -35,6 +36,9 @@ const MainScreen = props => {
   const {navigation} = props;
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
+  const {theme} = useContext(ThemeContext);
+
+  console.log('theme22', theme);
 
   useEffect(() => {
     Animated.sequence([

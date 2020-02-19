@@ -25,6 +25,7 @@ import LoadingIcon from './src/svg/assets/loading.svg';
 
 // mixins
 import mixins from './src/app/mixins.js';
+import {ThemeProvider} from './src/app/theme-context';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -96,37 +97,39 @@ function Tabs() {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Tabs"
-        screenOptions={{
-          // глобально для Stack.Navigator
-          headerStyle: {
-            backgroundColor: mixins.color.green,
-          },
-          headerTintColor: mixins.color.white,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}>
-        <Stack.Screen
-          name="Tabs"
-          component={Tabs}
-          options={{title: 'Cat bio', ...headerStyle}}
-        />
-        <Stack.Screen
-          name="Main"
-          component={MainScreen}
-          options={{title: 'Cat bio', ...headerStyle}}
-        />
-        <Stack.Screen
-          name="Charts"
-          component={ChartsScreen}
-          options={{title: 'Charts', ...headerStyle}}
-          initialParams={{from: 'App'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Tabs"
+          screenOptions={{
+            // глобально для Stack.Navigator
+            headerStyle: {
+              backgroundColor: mixins.color.green,
+            },
+            headerTintColor: mixins.color.white,
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}>
+          <Stack.Screen
+            name="Tabs"
+            component={Tabs}
+            options={{title: 'Cat bio', ...headerStyle}}
+          />
+          <Stack.Screen
+            name="Main"
+            component={MainScreen}
+            options={{title: 'Cat bio', ...headerStyle}}
+          />
+          <Stack.Screen
+            name="Charts"
+            component={ChartsScreen}
+            options={{title: 'Charts', ...headerStyle}}
+            initialParams={{from: 'App'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
