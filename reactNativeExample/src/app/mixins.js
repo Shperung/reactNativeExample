@@ -14,8 +14,8 @@ export const DEFAULT_BOTTOM_NAVIGATION_HEIGHT = 60;
 export const ANDOID_STATUSBAR_VERSION = 6;
 export const REGEX_EMAIL = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 export const REGEX_PHONE = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/;
-export const LIGHT_THEME = 'light';
-export const DARK_THEME = 'dark';
+export const LIGHT_THEME = 'LIGHT';
+export const DARK_THEME = 'DARK';
 
 export const MAX_WIDTH_DEVICE = 414;
 // use https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions
@@ -46,9 +46,8 @@ const mixins = {
     black: '#000',
     orange: '#FBCB69',
     yellow: '#ffa21f',
-    green: '#01e44d',
+    green: '#0b842e',
     greenDark: '#00220c',
-    greenToxik: '#009900',
   },
   font: {
     largeFont: 28,

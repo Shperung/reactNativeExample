@@ -16,7 +16,7 @@ import ClosedIcon from '../../svg/assets/closed.svg';
 import FlyImage from '../../app/img/fly.jpg';
 
 // constants
-import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+import mixins, {DEVICE_WIDTH, DARK_THEME} from '../../app/mixins.js';
 import {DC_WIDTH} from '../../app/constants';
 
 // components
@@ -38,7 +38,7 @@ const MainScreen = props => {
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
   const {theme} = useContext(ThemeContext);
 
-  console.log('theme22', theme);
+  const isDark = theme === DARK_THEME;
 
   useEffect(() => {
     Animated.sequence([
@@ -83,7 +83,9 @@ const MainScreen = props => {
 
   const scrollBgc = scrollViewValue.interpolate({
     inputRange: [0, DEVICE_WIDTH],
-    outputRange: [mixins.color.green, mixins.color.greenToxik],
+    outputRange: isDark
+      ? [mixins.color.greenDark, mixins.color.green]
+      : [mixins.color.green, mixins.color.greenDark],
     extrapolate: 'clamp',
   });
 

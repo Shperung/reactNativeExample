@@ -6,11 +6,18 @@ import AvatarImage from '../app/img/avatar.jpg';
 import AvatarImage2 from '../app/img/avatar2.jpg';
 import AvatarImage3 from '../app/img/avatar3.jpg';
 import AvatarImage4 from '../app/img/avatar4.jpg';
+import AvatarImage5 from '../app/img/avatar5.jpg';
 
 // styles
 import styles from './avatar.block.style';
 
-const avatars = [AvatarImage, AvatarImage2, AvatarImage3, AvatarImage4];
+const avatars = [
+  AvatarImage,
+  AvatarImage2,
+  AvatarImage3,
+  AvatarImage4,
+  AvatarImage5,
+];
 
 const AvatarBlock = props => {
   const {size = 52} = props;

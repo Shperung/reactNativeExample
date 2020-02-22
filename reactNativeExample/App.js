@@ -46,10 +46,22 @@ const headerStyle = {
 enableScreens();
 
 function Tabs() {
+  const {theme, toggleTheme} = useContext(ThemeContext);
+
+  const isDark = theme === DARK_THEME;
+
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: mixins.color.green,
+        activeTintColor: isDark
+          ? mixins.color.grayLight
+          : mixins.color.greenDark,
+        inactiveBackgroundColor: isDark
+          ? mixins.color.greenDark
+          : mixins.color.grayLight,
+        activeBackgroundColor: isDark
+          ? mixins.color.greenDark
+          : mixins.color.grayLight,
       }}>
       <Tab.Screen
         name="Main"

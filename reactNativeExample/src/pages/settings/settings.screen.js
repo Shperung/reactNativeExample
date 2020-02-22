@@ -14,6 +14,9 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 // components
 import ThemeContext from '../../app/theme-context';
 
+// styles
+import styles from './settings.screen.style';
+
 const SettingsScreen = props => {
   const {navigation, route} = props;
   const {theme, toggleTheme} = useContext(ThemeContext);
@@ -31,20 +34,14 @@ const SettingsScreen = props => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: isDark
-          ? mixins.color.greenDark
-          : mixins.color.grayLight,
-      }}>
-      <Text>SettingsScreen</Text>
-      <View>
-        <View>
-          <Text>Night Mode</Text>
-        </View>
+    <View style={[styles.container, styles[`container${theme}`]]}>
+      <Text style={[styles.heading, styles[`heading${theme}`]]}>
+        SettingsScreen
+      </Text>
+      <View style={[styles.item, styles[`item${theme}`]]}>
+        <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
+          Night Mode
+        </Text>
         <Switch
           trackColor={{true: mixins.color.green}}
           thumbColor={IS_IOS ? null : mixins.color.white}
