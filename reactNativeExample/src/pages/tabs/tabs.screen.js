@@ -41,24 +41,25 @@ const TabScreen = props => {
   const isDark = theme === DARK_THEME;
   const [animatedTab, setAnimatedTab] = useState(new Animated.Value(0));
 
-  const [pressedTab, setPressedTab] = useState('');
   const [activeTab, setActiveTab] = useState('');
+  const [activeIndex, setActiveIndex] = useState(null);
 
-  const handleTab = (tabUnique, isActive) => {
-    setPressedTab(tabUnique);
+  const handleTab = (tabUnique, isActive, i) => {
+    setActiveIndex(i);
 
+    // якщо тап по тій самій кнопкі то розкривається всі таби
     if (isActive) {
       setActiveTab('');
-
       Animated.timing(animatedTab, {
         toValue: 0,
+        duration: 200,
         easing: Easing.sin,
       }).start();
     } else {
       setActiveTab(tabUnique);
-
       Animated.timing(animatedTab, {
         toValue: 1,
+        duration: 200,
         easing: Easing.sin,
       }).start();
     }
@@ -69,46 +70,61 @@ const TabScreen = props => {
       <Text style={[styles.heading, styles[`heading${theme}`]]}>
         Tab Screen
       </Text>
-      {tabArr.map(tab => {
-        const isActive = activeTab === tab.unique;
-        const isPressed = pressedTab === tab.unique;
+      <View style={styles.tabsWrap}>
+        {tabArr.map((tab, i, arr) => {
+          const isActive = activeTab === tab.unique;
 
-        const changeMargin = animatedTab.interpolate({
-          inputRange: [0, 1],
-          outputRange: [0, isActive ? 0 : 50],
-        });
+          // втягую вверх таби на -50 (якщо не перший)
+          let outputRangeArr = [0, -50 * i];
+          if (i > activeIndex) {
+            outputRangeArr = [0, -50];
+          }
+          if (i < activeIndex) {
+            outputRangeArr = [0, 0];
+          }
 
-        const marginStyles = isPressed ? {} : {marginTop: changeMargin};
+          const changeMargin = animatedTab.interpolate({
+            inputRange: [0, 1],
+            outputRange: outputRangeArr,
+          });
 
-        return (
-          <Animated.View
-            key={tab.unique}
-            style={[styles.item, styles[`item${theme}`], marginStyles]}>
-            <TouchableOpacity
-              onPress={() => handleTab(tab.unique, isActive)}
-              style={[styles.itemBtn, styles[`itemBtn${theme}`]]}>
-              <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
-                {tab.label}
-              </Text>
-              {isActive ? (
+          const marginStyles = {marginTop: changeMargin};
+
+          return (
+            <Animated.View
+              key={tab.unique}
+              style={[
+                styles.item,
+                styles[`item${theme}`],
+                isActive && styles.itemActive,
+                marginStyles,
+              ]}>
+              <TouchableOpacity
+                onPress={() => handleTab(tab.unique, isActive, i)}
+                style={[styles.itemBtn, styles[`itemBtn${theme}`]]}>
                 <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
-                  Change
+                  {tab.label}
                 </Text>
-              ) : null}
-            </TouchableOpacity>
-          </Animated.View>
-        );
-      })}
+                {isActive ? (
+                  <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
+                    Change
+                  </Text>
+                ) : null}
+              </TouchableOpacity>
+            </Animated.View>
+          );
+        })}
+      </View>
 
       <View style={styles.content}>
         <Text style={[styles.contentText, styles[`contentText${theme}`]]}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Active tab - ({activeTab}). Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum.
         </Text>
       </View>
     </View>

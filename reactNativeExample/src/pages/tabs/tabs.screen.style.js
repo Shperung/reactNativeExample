@@ -24,9 +24,21 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: mixins.color.white08,
-    borderBottomColor: mixins.color.greenDark,
-    borderBottomWidth: 1,
+    backgroundColor: mixins.color.greenDark,
+    position: 'relative',
+    zIndex: 1,
+  },
+  itemDARK: {
+    backgroundColor: mixins.color.grayLight,
+  },
+  itemText: {
+    color: mixins.color.grayLight,
+  },
+  itemTextDARK: {
+    color: mixins.color.black,
+  },
+  itemActive: {
+    zIndex: 2,
   },
   itemBtn: {
     height: 50,
@@ -45,6 +57,10 @@ const styles = StyleSheet.create({
   },
   contentTextDARK: {
     color: mixins.color.grayLight,
+  },
+  tabsWrap: {
+    overflow: 'hidden',
+    borderRadius: 12,
   },
 });
 
