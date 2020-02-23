@@ -62,6 +62,18 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 12,
   },
+  bottomLine: {
+    height: 2,
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    backgroundColor: mixins.color.grayLight,
+    zIndex: 2,
+  },
+  bottomLineDARK: {
+    backgroundColor: mixins.color.greenDark,
+  },
 });
 
 export default styles;

@@ -73,6 +73,7 @@ const TabScreen = props => {
       <View style={styles.tabsWrap}>
         {tabArr.map((tab, i, arr) => {
           const isActive = activeTab === tab.unique;
+          const isLast = i === arr.length - 1;
 
           // втягую вверх таби на -50 (якщо не перший)
           let outputRangeArr = [0, -50 * i];
@@ -100,6 +101,7 @@ const TabScreen = props => {
                 marginStyles,
               ]}>
               <TouchableOpacity
+                activeOpacity={0.9}
                 onPress={() => handleTab(tab.unique, isActive, i)}
                 style={[styles.itemBtn, styles[`itemBtn${theme}`]]}>
                 <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
@@ -111,6 +113,11 @@ const TabScreen = props => {
                   </Text>
                 ) : null}
               </TouchableOpacity>
+              {!isLast && !activeTab ? (
+                <View
+                  style={[styles.bottomLine, styles[`bottomLine${theme}`]]}
+                />
+              ) : null}
             </Animated.View>
           );
         })}
