@@ -18,12 +18,14 @@ import MainScreen from './src/pages/main/main.screen';
 import ChartsScreen from './src/pages/charts/charts.screen';
 import LoaderScreen from './src/pages/loader/loader.screen';
 import SettingsScreen from './src/pages/settings/settings.screen';
+import TabsScreen from './src/pages/tabs/tabs.screen';
 
 // icons
 import HomeIcon from './src/svg/assets/home.svg';
 import CoinsIcon from './src/svg/assets/coins.svg';
 import LoadingIcon from './src/svg/assets/loading.svg';
 import SettingsIcon from './src/svg/assets/settings.svg';
+import UtilitiesIcon from './src/svg/assets/utilities.svg';
 
 // mixins
 import mixins, {DARK_THEME} from './src/app/mixins.js';
@@ -97,6 +99,20 @@ function Tabs() {
         options={{
           tabBarIcon: ({color}) => (
             <LoadingIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Tab"
+        component={TabsScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <UtilitiesIcon
               width={24}
               height={24}
               fill={color}
