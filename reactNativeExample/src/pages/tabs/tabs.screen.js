@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
+  Easing,
   TouchableOpacity,
   View,
   Text,
-  Switch,
+  Animated,
 } from 'react-native';
 
 // constants
@@ -39,11 +39,29 @@ const TabScreen = props => {
   const {navigation, route} = props;
   const {theme, toggleTheme} = useContext(ThemeContext);
   const isDark = theme === DARK_THEME;
+  const [animatedTab, setAnimatedTab] = useState(new Animated.Value(0));
 
+  const [pressedTab, setPressedTab] = useState('');
   const [activeTab, setActiveTab] = useState('');
 
-  const handleTab = tabUnique => {
-    setActiveTab(tabUnique);
+  const handleTab = (tabUnique, isActive) => {
+    setPressedTab(tabUnique);
+
+    if (isActive) {
+      setActiveTab('');
+
+      Animated.timing(animatedTab, {
+        toValue: 0,
+        easing: Easing.sin,
+      }).start();
+    } else {
+      setActiveTab(tabUnique);
+
+      Animated.timing(animatedTab, {
+        toValue: 1,
+        easing: Easing.sin,
+      }).start();
+    }
   };
 
   return (
@@ -53,11 +71,21 @@ const TabScreen = props => {
       </Text>
       {tabArr.map(tab => {
         const isActive = activeTab === tab.unique;
+        const isPressed = pressedTab === tab.unique;
+
+        const changeMargin = animatedTab.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, isActive ? 0 : 50],
+        });
+
+        const marginStyles = isPressed ? {} : {marginTop: changeMargin};
 
         return (
-          <View key={tab.unique} style={[styles.item, styles[`item${theme}`]]}>
+          <Animated.View
+            key={tab.unique}
+            style={[styles.item, styles[`item${theme}`], marginStyles]}>
             <TouchableOpacity
-              onPress={() => handleTab(tab.unique)}
+              onPress={() => handleTab(tab.unique, isActive)}
               style={[styles.itemBtn, styles[`itemBtn${theme}`]]}>
               <Text style={[styles.itemText, styles[`itemText${theme}`]]}>
                 {tab.label}
@@ -68,7 +96,7 @@ const TabScreen = props => {
                 </Text>
               ) : null}
             </TouchableOpacity>
-          </View>
+          </Animated.View>
         );
       })}
 

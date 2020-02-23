@@ -54,7 +54,6 @@ const MainScreen = props => {
   useLayoutEffect(() => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
-      // useNativeDriver: true,
       easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);
