@@ -2,7 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Button,
+  TouchableOpacity,
   View,
   Text,
   StatusBar,
@@ -14,6 +14,11 @@ const LoaderScreen = props => {
 
   return (
     <View>
+      <View>
+        <TouchableOpacity>
+          <Text>Rainbow Cat</Text>
+        </TouchableOpacity>
+      </View>
       <LottieView
         source={require('../../app/json/rainbow-cat-remix.json')}
         autoPlay
