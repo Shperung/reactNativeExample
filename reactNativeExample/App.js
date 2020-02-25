@@ -79,7 +79,7 @@ function Tabs() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Charts"
         component={ChartsScreen}
         options={{
@@ -92,7 +92,7 @@ function Tabs() {
             />
           ),
         }}
-      />
+      />*/}
       <Tab.Screen
         name="Loader"
         component={LoaderScreen}

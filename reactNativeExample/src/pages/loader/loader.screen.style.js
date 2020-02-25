@@ -11,6 +11,26 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_WIDTH,
   },
+  speedBtn: {
+    width: 50,
+    height: 50,
+    backgroundColor: mixins.color.greenDark,
+    margin: 8,
+    marginRight: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  speedBtnText: {
+    color: mixins.color.white,
+  },
+  btnWrap: {
+    flexDirection: 'row',
+  },
+  heading: {
+    padding: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;
