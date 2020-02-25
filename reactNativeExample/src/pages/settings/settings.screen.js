@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  Button,
+  TouchableOpacity,
   View,
   Text,
   Switch,
@@ -14,12 +14,14 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 // components
 import ThemeContext from '../../app/theme-context';
 
+// icon
+import CheckIcon from '../../svg/assets/check-icon.svg';
+
 // styles
 import styles from './settings.screen.style';
 
 const SettingsScreen = props => {
-  const {navigation, route} = props;
-  const {theme, toggleTheme} = useContext(ThemeContext);
+  const {theme, toggleTheme, auto, toggleAutoTheme} = useContext(ThemeContext);
 
   const isDark = theme === DARK_THEME;
 
@@ -31,6 +33,10 @@ const SettingsScreen = props => {
     } else {
       toggleTheme(DARK_THEME);
     }
+  };
+
+  const handleSwitchAuto = () => {
+    toggleAutoTheme(!auto);
   };
 
   return (
@@ -48,6 +54,28 @@ const SettingsScreen = props => {
           value={isDark}
           onValueChange={res => handleChangeTheme(res)}
         />
+      </View>
+
+      <View style={[styles.item, styles[`item${theme}`]]}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={handleSwitchAuto}
+          style={styles.automaticly}>
+          <View
+            style={[
+              styles.automaticlyBlock,
+              styles[`automaticlyBlock${theme}`],
+            ]}>
+            {auto ? (
+              <CheckIcon width={18} height={18} fill={mixins.color.green} />
+            ) : null}
+          </View>
+
+          <Text
+            style={[styles.infoItemHeader, styles[`infoItemHeader${theme}`]]}>
+            Switch automatically
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

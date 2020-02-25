@@ -39,6 +39,30 @@ const styles = StyleSheet.create({
   itemTextDARK: {
     color: mixins.color.grayLight,
   },
+  automaticly: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  automaticlyBlock: {
+    width: 24,
+    height: 24,
+    backgroundColor: mixins.color.grayLight,
+    marginRight: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 4,
+  },
+  automaticlyBlockDARK: {
+    backgroundColor: mixins.color.grayLight,
+  },
+  infoItemHeader: {
+    color: mixins.color.black,
+    fontSize: 16,
+    paddingTop: 8,
+  },
+  infoItemHeaderDARK: {
+    color: mixins.color.grayLight,
+  },
 });
 
 export default styles;
