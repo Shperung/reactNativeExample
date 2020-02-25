@@ -5,25 +5,36 @@ import {
   TouchableOpacity,
   View,
   Text,
-  StatusBar,
+  ScrollView,
 } from 'react-native';
 import LottieView from 'lottie-react-native';
+
+import styles from './loader.screen.style.js';
 
 const LoaderScreen = props => {
   const {navigation, route} = props;
 
   return (
-    <View>
-      <View>
-        <TouchableOpacity>
-          <Text>Rainbow Cat</Text>
-        </TouchableOpacity>
-      </View>
-      <LottieView
-        source={require('../../app/json/rainbow-cat-remix.json')}
-        autoPlay
-        loop
-      />
+    <View style={styles.container}>
+      <ScrollView
+        snapToOffsets={[1]}
+        style={[styles.scrollViewHorizontal]}
+        scrollEventThrottle={16}
+        alwaysBounceHorizontal
+        horizontal>
+        <LottieView
+          style={styles.lottie}
+          source={require('../../app/json/rainbow-cat-remix.json')}
+          autoPlay
+          loop
+        />
+        <LottieView
+          style={styles.lottie}
+          source={require('../../app/json/kicking-cats.json')}
+          autoPlay
+          loop
+        />
+      </ScrollView>
     </View>
   );
 };
