@@ -13,7 +13,7 @@ import bezier from './bezier-easing.js';
 import styles from './charts.screen.style.js';
 
 let intreval = null;
-const tick = 1000 / 60; // 1секунда/60герц = 16.6 міллисекунд проходе  заміна кадра.
+const tick = 1000 / 60; // 1секунда/60герц = 16.6 міллисекунд проходе  заміна кадра. за 16мс і кадр
 // час анімації
 const duration = 1000;
 // ізінг один з цих https://easings.net/ru
@@ -42,7 +42,7 @@ const ChartsScreen = props => {
       if (timePassed <= duration) {
         // ділимо час що минув на загальний
         const timeDivide = timePassed / duration;
-        // варіант на сінусах  const curentIndent = Math.sin((timeDivide) * (Math.PI / 2)) * 8;
+        // варіант на сінусах  const curentIndent = Math.sin((timeDivide) * (Math.PI / 2)) * height;
         // варіант на ізінгові
         const curentIndent = easeInOutBack(timeDivide) * height;
 
