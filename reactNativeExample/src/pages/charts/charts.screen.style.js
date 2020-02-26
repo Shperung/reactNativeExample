@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: mixins.color.greenDark,
     margin: 16,
-    marginRight: 8,
     justifyContent: 'center',
     paddingHorizontal: 16,
   },
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
   aimatedBlock: {
     backgroundColor: mixins.color.greenDark,
     marginTop: 16,
-    height: 50,
     marginHorizontal: 16,
   },
 });
