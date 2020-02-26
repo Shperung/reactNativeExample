@@ -5,22 +5,24 @@ import {
   Button,
   View,
   Text,
-  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
+
+import styles from './charts.screen.style.js';
 
 const ChartsScreen = props => {
   const {navigation, route} = props;
+
+  const handleAmimated = () => {
+    console.log('handleAmimated');
+  };
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>ChartsScreen</Text>
-      {route.params && route.params.from ? (
-        <Text>from {JSON.stringify(route.params.from)}</Text>
-      ) : null}
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Update the title"
-        onPress={() => navigation.setOptions({title: 'Updated!'})}
-      />
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.aimatedBtm} onPress={handleAmimated}>
+        <Text style={styles.speedBtnText}>Animated</Text>
+      </TouchableOpacity>
+      <View style={styles.aimatedBlock} />
     </View>
   );
 };
