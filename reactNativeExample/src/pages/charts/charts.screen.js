@@ -23,7 +23,7 @@ const easeInOutBack = bezier(0.68, -0.55, 0.265, 1.55);
 const height = 450;
 
 const ChartsScreen = props => {
-  const [animatedHeight, setAnimatedHeight] = useState(50);
+  const [animatedHeight, setAnimatedHeight] = useState(0);
 
   const handleAmimated = () => {
     if (intreval) {

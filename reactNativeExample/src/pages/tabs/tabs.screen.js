@@ -13,6 +13,7 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 
 // components
 import ThemeContext from '../../app/theme-context';
+import AnimationCircle from '../../animations/animation-circle';
 
 // styles
 import styles from './tabs.screen.style';
@@ -20,7 +21,7 @@ import styles from './tabs.screen.style';
 const tabArr = [
   {
     unique: 'item1',
-    label: 'Item 1',
+    label: 'Circle animations',
   },
   {
     unique: 'item2',
@@ -124,15 +125,7 @@ const TabScreen = props => {
       </View>
 
       <View style={styles.content}>
-        <Text style={[styles.contentText, styles[`contentText${theme}`]]}>
-          Active tab - ({activeTab}). Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </Text>
+        <AnimationCircle />
       </View>
     </View>
   );
