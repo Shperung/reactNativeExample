@@ -8,20 +8,29 @@ import styles from './animations.styles';
 
 const radius = 120;
 const speed = 20;
+// початок координат
+const x0 = 0;
+const y0 = 0;
+// розмір кота
+const catSize = 32;
+// зміщення проловини розміра
+const offset = catSize / 2;
+let f = 0;
+var s = (2 * Math.PI) / 180; // вугол
 
 const AnimationCircle = props => {
   const [left, setLeft] = useState(0);
   const [top, setTop] = useState(0);
 
   useEffect(() => {
-    var f = 0;
-    var s = (2 * Math.PI) / 180; //Вычислим угол
-    setInterval(function() {
+    setInterval(() => {
       // функция движения
-      f += Math.sin(s); // приращение аргумента
+      f += Math.sin(s); // приріст аргумента
 
-      setLeft(radius * Math.sin(f) - 16);
-      setTop(radius * Math.cos(f) - 16);
+      // зміщення по х
+      setTop(x0 + radius * Math.cos(f) - offset);
+      // зміщення по у, по часвоі f , проти часвої -f
+      setLeft(y0 + radius * Math.sin(-f) - offset);
     }, speed);
   }, []);
 
@@ -30,8 +39,8 @@ const AnimationCircle = props => {
       <View style={styles.circleAnimatedline}>
         <View style={styles.circleAnimatedItemWrap}>
           <CatIcon
-            width={32}
-            height={32}
+            width={catSize}
+            height={catSize}
             fill="#fff"
             style={[styles.circleAnimatedItem, {top, left}]}
           />
