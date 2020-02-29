@@ -20,7 +20,7 @@ import styles from './tabs.screen.style';
 
 const tabArr = [
   {
-    unique: 'item1',
+    unique: 'circleAnimations',
     label: 'Circle animations',
   },
   {
@@ -125,7 +125,7 @@ const TabScreen = props => {
       </View>
 
       <View style={styles.content}>
-        <AnimationCircle />
+        {activeTab === 'circleAnimations' ? <AnimationCircle /> : null}
       </View>
     </View>
   );

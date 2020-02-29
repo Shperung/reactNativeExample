@@ -6,8 +6,9 @@ import CatIcon from '../svg/assets/cat.svg';
 // styles
 import styles from './animations.styles';
 
+let intreval = null;
 const radius = 120;
-const speed = 20;
+const tick = 1000 / 60; // 1секунда/60герц = 16.6 міллисекунд проходе  заміна кадра. за 16мс і кадр
 // початок координат
 const x0 = 0;
 const y0 = 0;
@@ -16,22 +17,26 @@ const catSize = 32;
 // зміщення проловини розміра
 const offset = catSize / 2;
 let f = 0;
-var s = (2 * Math.PI) / 180; // вугол
+const angle = (2 * Math.PI) / 180; // вугол
 
 const AnimationCircle = props => {
   const [left, setLeft] = useState(0);
   const [top, setTop] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    if (intreval) {
+      // на всякий випадок очищаємо
+      clearInterval(intreval);
+    }
+    intreval = setInterval(() => {
       // функция движения
-      f += Math.sin(s); // приріст аргумента
+      f += angle; // приріст аргумента
 
       // зміщення по х
       setTop(x0 + radius * Math.cos(f) - offset);
       // зміщення по у, по часвоі f , проти часвої -f
       setLeft(y0 + radius * Math.sin(-f) - offset);
-    }, speed);
+    }, tick);
   }, []);
 
   return (
