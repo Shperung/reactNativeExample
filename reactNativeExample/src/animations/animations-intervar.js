@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,9 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import bezier from './bezier-easing.js';
+// constants
+import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../app/mixins';
 
-import styles from './charts.screen.style.js';
+// helpers
+import bezier from '../helpers/bezier-easing.js';
+import ThemeContext from '../app/theme-context';
+
+// styles
+import styles from './animations.styles.js';
 
 let intreval = null;
 const tick = 1000 / 60; // 1секунда/60герц = 16.6 міллисекунд проходе  заміна кадра. за 16мс і кадр
@@ -22,8 +28,10 @@ const easeInOutBack = bezier(0.68, -0.55, 0.265, 1.55);
 // висота для анімації
 const height = 450;
 
-const ChartsScreen = props => {
+const AnimationsInterval = props => {
   const [animatedHeight, setAnimatedHeight] = useState(0);
+  const {theme} = useContext(ThemeContext);
+  const isDark = theme === DARK_THEME;
 
   const handleAmimated = () => {
     if (intreval) {
@@ -60,12 +68,22 @@ const ChartsScreen = props => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.aimatedBtm} onPress={handleAmimated}>
-        <Text style={styles.speedBtnText}>Animated</Text>
+      <TouchableOpacity
+        style={[styles.aimatedBtm, styles[`aimatedBtm${theme}`]]}
+        onPress={handleAmimated}>
+        <Text style={[styles.speedBtnText, styles[`speedBtnText${theme}`]]}>
+          Animated
+        </Text>
       </TouchableOpacity>
-      <View style={[styles.aimatedBlock, {height: animatedHeight}]} />
+      <View
+        style={[
+          styles.aimatedBlock,
+          styles[`aimatedBlock${theme}`],
+          {height: animatedHeight},
+        ]}
+      />
     </View>
   );
 };
 
-export default ChartsScreen;
+export default AnimationsInterval;

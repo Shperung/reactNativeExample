@@ -15,7 +15,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // screens
 import MainScreen from './src/pages/main/main.screen';
-import ChartsScreen from './src/pages/charts/charts.screen';
 import LoaderScreen from './src/pages/loader/loader.screen';
 import SettingsScreen from './src/pages/settings/settings.screen';
 import TabsScreen from './src/pages/tabs/tabs.screen';
@@ -79,7 +78,7 @@ function Tabs() {
           ),
         }}
       />
-      <Tab.Screen
+      {/*<Tab.Screen
         name="Charts"
         component={ChartsScreen}
         options={{
@@ -92,7 +91,7 @@ function Tabs() {
             />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Loader"
         component={LoaderScreen}
@@ -172,12 +171,6 @@ const App = () => {
             name="Main"
             component={MainScreen}
             options={{title: 'Cat bio', ...headerStyle}}
-          />
-          <Stack.Screen
-            name="Charts"
-            component={ChartsScreen}
-            options={{title: 'Charts', ...headerStyle}}
-            initialParams={{from: 'App'}}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -14,6 +14,7 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 // components
 import ThemeContext from '../../app/theme-context';
 import AnimationCircle from '../../animations/animation-circle';
+import AnimationsInterval from '../../animations/animations-intervar.js';
 
 // styles
 import styles from './tabs.screen.style';
@@ -24,8 +25,8 @@ const tabArr = [
     label: 'Circle animations',
   },
   {
-    unique: 'item2',
-    label: 'Item 2',
+    unique: 'animationsInterval',
+    label: 'Animations Interval',
   },
   {
     unique: 'item3',
@@ -38,7 +39,7 @@ const tabArr = [
 ];
 const TabScreen = props => {
   const {navigation, route} = props;
-  const {theme, toggleTheme} = useContext(ThemeContext);
+  const {theme} = useContext(ThemeContext);
   const isDark = theme === DARK_THEME;
   const [animatedTab, setAnimatedTab] = useState(new Animated.Value(0));
 
@@ -126,6 +127,7 @@ const TabScreen = props => {
 
       <View style={styles.content}>
         {activeTab === 'circleAnimations' ? <AnimationCircle /> : null}
+        {activeTab === 'animationsInterval' ? <AnimationsInterval /> : null}
       </View>
     </View>
   );
