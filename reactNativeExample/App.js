@@ -18,6 +18,7 @@ import MainScreen from './src/pages/main/main.screen';
 import LoaderScreen from './src/pages/loader/loader.screen';
 import SettingsScreen from './src/pages/settings/settings.screen';
 import TabsScreen from './src/pages/tabs/tabs.screen';
+import GalleryScreen from './src/pages/gallery/gallery.screen.js';
 
 // icons
 import HomeIcon from './src/svg/assets/home.svg';
@@ -78,9 +79,9 @@ function Tabs() {
           ),
         }}
       />
-      {/*<Tab.Screen
-        name="Charts"
-        component={ChartsScreen}
+      <Tab.Screen
+        name="Gallery"
+        component={GalleryScreen}
         options={{
           tabBarIcon: ({color}) => (
             <CoinsIcon
@@ -91,7 +92,7 @@ function Tabs() {
             />
           ),
         }}
-      /> */}
+      />
       <Tab.Screen
         name="Loader"
         component={LoaderScreen}
@@ -167,11 +168,16 @@ const App = () => {
             component={Tabs}
             options={{title: 'Cat bio', ...headerStyle}}
           />
-          <Stack.Screen
+          {/*} <Stack.Screen
             name="Main"
             component={MainScreen}
             options={{title: 'Cat bio', ...headerStyle}}
           />
+          <Stack.Screen
+            name="Gallery"
+            component={GalleryScreen}
+            options={{title: 'Gallery', ...headerStyle}}
+          />*/}
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
