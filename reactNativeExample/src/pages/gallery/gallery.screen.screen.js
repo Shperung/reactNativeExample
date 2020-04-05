@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 32,
     flexDirection: 'row',
     overflow: 'hidden',
+    marginBottom: 8,
   },
   headingBtn: {
     flex: 1,
@@ -29,6 +30,17 @@ const styles = StyleSheet.create({
   headingBtnSecond: {
     borderLeftWidth: 1,
     borderLeftColor: mixins.color.white,
+  },
+  listImg: {width: '100%', height: '100%'},
+  flatList: {
+    flex: 1,
+  },
+  card: {
+    padding: 8,
+  },
+  cardText: {
+    paddingTop: 2,
+    paddingBottom: 4,
   },
 });
 
