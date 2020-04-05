@@ -35,6 +35,8 @@ const DATA = [...new Array(41)].map((item, i) => {
     img: avatars[Math.floor(Math.random() * avatars.length)],
   };
 });
+const imgWidth2 = DEVICE_WIDTH / 2 - 24;
+const imgWidth3 = DEVICE_WIDTH / 3 - 21;
 
 const GalleryScreen = props => {
   const {navigation, route} = props;
@@ -43,7 +45,7 @@ const GalleryScreen = props => {
 
   const [selectedTab, setSelectedTab] = useState(TILE);
   const [numColumns, setNumColumns] = useState(2);
-  const [imgSize, setImgSize] = useState(DEVICE_WIDTH / 2 - 32);
+  const [imgSize, setImgSize] = useState(imgWidth2);
 
   const isTile = selectedTab === TILE;
   const isGrid = selectedTab === GRID;
@@ -51,36 +53,38 @@ const GalleryScreen = props => {
   useEffect(() => {
     if (isTile) {
       setNumColumns(2);
-      setImgSize(DEVICE_WIDTH / 2 - 32);
+      setImgSize(imgWidth2);
     } else {
       setNumColumns(3);
-      setImgSize(DEVICE_WIDTH / 3 - 32 + 6);
+      setImgSize(imgWidth3);
     }
   }, [selectedTab]);
 
   return (
     <View style={[styles.container, styles[`container${theme}`]]}>
-      <View style={[styles.heading, styles[`heading${theme}`]]}>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={() => setSelectedTab(TILE)}
-          style={[styles.headingBtn, styles.headingBtnFirst]}>
-          <Grid2
-            fill={isTile ? mixins.color.white : mixins.color.white02}
-            height={32}
-            width={32}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={() => setSelectedTab(GRID)}
-          style={[styles.headingBtn, styles.headingBtnSecond]}>
-          <Grid3
-            fill={isGrid ? mixins.color.white : mixins.color.white02}
-            height={32}
-            width={32}
-          />
-        </TouchableOpacity>
+      <View style={styles.headingWrap}>
+        <View style={[styles.heading, styles[`heading${theme}`]]}>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={() => setSelectedTab(TILE)}
+            style={[styles.headingBtn, styles.headingBtnFirst]}>
+            <Grid2
+              fill={isTile ? mixins.color.white : mixins.color.white02}
+              height={32}
+              width={32}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.9}
+            onPress={() => setSelectedTab(GRID)}
+            style={[styles.headingBtn, styles.headingBtnSecond]}>
+            <Grid3
+              fill={isGrid ? mixins.color.white : mixins.color.white02}
+              height={32}
+              width={32}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}

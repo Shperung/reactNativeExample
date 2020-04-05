@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: mixins.color.grayLight,
-    padding: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 0,
   },
   heading: {
     height: 60,
@@ -17,6 +18,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
     marginBottom: 8,
+  },
+  headingWrap: {
+    paddingHorizontal: 16,
   },
   headingBtn: {
     flex: 1,
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
   listImg: {width: '100%', height: '100%'},
   flatList: {
     flex: 1,
+    paddingHorizontal: 8,
   },
   card: {
     padding: 8,

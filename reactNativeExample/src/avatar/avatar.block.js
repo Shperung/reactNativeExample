@@ -14,6 +14,7 @@ import AvatarImage9 from '../app/img/avatar9.jpg';
 import AvatarImage10 from '../app/img/avatar10.jpg';
 import AvatarImage11 from '../app/img/avatar11.jpg';
 import AvatarImage12 from '../app/img/avatar12.jpg';
+import AvatarImage13 from '../app/img/avatar13.jpg';
 
 // styles
 import styles from './avatar.block.style';
@@ -31,6 +32,7 @@ export const avatars = [
   AvatarImage10,
   AvatarImage11,
   AvatarImage12,
+  AvatarImage13,
 ];
 
 const AvatarBlock = props => {
