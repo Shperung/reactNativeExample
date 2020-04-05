@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+import mixins, {DEVICE_WIDTH, DEVICE_HEIGHT} from '../../app/mixins.js';
 import {DC_WIDTH} from '../../app/constants';
 
 const styles = StyleSheet.create({
@@ -42,10 +42,47 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 8,
+    position: 'relative',
+  },
+  cardBtn: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: '100%',
   },
   cardText: {
     paddingTop: 2,
     paddingBottom: 4,
+  },
+  zoomCard: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    backgroundColor: mixins.color.white,
+    zIndex: 2,
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT,
+  },
+  zoomItemCardHeader: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    padding: 16,
+  },
+  zoomItemCardText: {
+    padding: 16,
+  },
+  closeBtn: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
+    backgroundColor: mixins.color.white,
+    zIndex: 3,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
