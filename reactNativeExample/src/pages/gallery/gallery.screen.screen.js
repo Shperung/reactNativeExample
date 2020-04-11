@@ -35,18 +35,13 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderLeftColor: mixins.color.white,
   },
-  listImg: {
-    // width: '100%',
-    // height: undefined,
-    // aspectRatio: 1,
-    //resizeMode: 'cover',
-  },
+  listImg: {},
   flatList: {
     flex: 1,
     paddingHorizontal: 8,
   },
   card: {
-    padding: 8,
+    margin: 8,
     position: 'relative',
   },
   cardBtn: {
@@ -57,8 +52,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   cardText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 26,
     paddingTop: 2,
-    paddingBottom: 4,
   },
   zoomCard: {
     position: 'absolute',

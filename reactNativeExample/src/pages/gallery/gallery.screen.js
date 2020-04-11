@@ -61,8 +61,7 @@ const GalleryScreen = props => {
 
   const animatedOptions = {
     easing: Easing.sin,
-    duration: 450,
-    //duration: 3000,
+    duration: 400,
   };
 
   const clearSizes = () => {
@@ -110,8 +109,8 @@ const GalleryScreen = props => {
     setZoomItem(item);
 
     setZoomLocation([
-      e.nativeEvent.pageX - e.nativeEvent.locationX + 8,
-      e.nativeEvent.pageY - e.nativeEvent.locationY - 48,
+      e.nativeEvent.pageX - e.nativeEvent.locationX,
+      e.nativeEvent.pageY - e.nativeEvent.locationY - 56,
     ]);
 
     Animated.timing(zoomAnimated, {
@@ -121,11 +120,11 @@ const GalleryScreen = props => {
   };
 
   const handleCloseZoom = () => {
-    // інямую назад і чистю
+    // інямую назад і чистю через n мс щоа анімаха закінчилась
     Animated.timing(zoomAnimated, {
       toValue: 0,
       ...animatedOptions,
-    }).start(() => clearSizes());
+    }).start(() => setTimeout(() => clearSizes(), 50));
   };
 
   return (
@@ -138,12 +137,12 @@ const GalleryScreen = props => {
               {
                 width: zoomWidth,
                 height: zoomHeight,
+                left: zoomleft,
+                top: zoomTop,
                 // width: imgSize,
                 // height: imgSize,
                 // left: zoomLocation[0] || 0,
                 // top: zoomLocation[1] || 0,
-                left: zoomleft,
-                top: zoomTop,
               },
             ]}>
             <Animated.View
@@ -191,6 +190,7 @@ const GalleryScreen = props => {
               styles.backdrop,
               {
                 opacity: zoomScaleOpacity,
+                zIndex: zoomScaleOpacity,
               },
             ]}
           />
