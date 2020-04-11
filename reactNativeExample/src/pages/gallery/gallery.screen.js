@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useLayoutEffect} from 'react';
 import {
   SafeAreaView,
   Easing,
@@ -11,7 +11,12 @@ import {
 } from 'react-native';
 
 // constants
-import mixins, {DEVICE_WIDTH, DARK_THEME, IS_IOS} from '../../app/mixins';
+import mixins, {
+  DEVICE_WIDTH,
+  DARK_THEME,
+  IS_IOS,
+  DEVICE_HEIGHT,
+} from '../../app/mixins';
 import {avatars} from '../../avatar/avatar.block.js';
 
 // components
@@ -48,9 +53,21 @@ const GalleryScreen = props => {
   const [numColumns, setNumColumns] = useState(2);
   const [zoomItem, setZoomItem] = useState(null);
   const [imgSize, setImgSize] = useState(imgWidth2);
+  const [zoomAnimated, setZoomAnimated] = useState(new Animated.Value(0));
+  const [zoomLocation, setZoomLocation] = useState([]);
 
   const isTile = selectedTab === TILE;
   const isGrid = selectedTab === GRID;
+
+  const animatedOptions = {
+    easing: Easing.sin,
+    duration: 600,
+  };
+
+  const clearSizes = () => {
+    setZoomItem(null);
+    setZoomLocation([]);
+  };
 
   useEffect(() => {
     if (isTile) {
@@ -60,40 +77,82 @@ const GalleryScreen = props => {
       setNumColumns(3);
       setImgSize(imgWidth3);
     }
+    clearSizes();
   }, [selectedTab]);
+
+  useLayoutEffect(() => {
+    Animated.timing(zoomAnimated, {
+      toValue: 1,
+      ...animatedOptions,
+    }).start();
+  }, [zoomItem, zoomLocation]);
+
+  const zoomWidth = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [imgSize, DEVICE_WIDTH],
+  });
+
+  const zoomHeight = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [imgSize, DEVICE_HEIGHT],
+  });
+
+  const zoomleft = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [zoomLocation[0] || 0, 0],
+  });
+
+  const zoomTop = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [zoomLocation[1] || 0, 0],
+  });
 
   const handlePressCard = (e, item) => {
     setZoomItem(item);
-    console.log('e.nativeEvent.locationX', e.nativeEvent.locationX);
-    console.log('e.nativeEvent.locationY', e.nativeEvent.locationY);
+
+    setZoomLocation([
+      e.nativeEvent.pageX - e.nativeEvent.locationX + 8,
+      e.nativeEvent.pageY - e.nativeEvent.locationY - 48,
+    ]);
   };
 
   const handleCloseZoom = () => {
-    setZoomItem(null);
+    // інямую назад і чистю
+    Animated.timing(zoomAnimated, {
+      toValue: 0,
+      ...animatedOptions,
+    }).start(() => clearSizes());
   };
 
   return (
     <React.Fragment>
       {zoomItem ? (
-        <View style={[styles.zoomCard]}>
+        <Animated.View
+          style={[
+            styles.zoomCard,
+            {
+              width: zoomWidth,
+              height: zoomHeight,
+              // width: imgSize,
+              // height: imgSize,
+              // left: zoomLocation[0] || 0,
+              // top: zoomLocation[1] || 0,
+              left: zoomleft,
+              top: zoomTop,
+            },
+          ]}>
           <TouchableOpacity style={[styles.closeBtn]} onPress={handleCloseZoom}>
             <Closed width={20} height={20} fill={mixins.color.blueDark} />
           </TouchableOpacity>
-          <Image
-            style={[
-              styles.listImg,
-              {width: DEVICE_WIDTH, height: DEVICE_WIDTH},
-            ]}
-            source={zoomItem.img}
-          />
-          <Text style={[styles.zoomItemCardHeader]}>{zoomItem.title}</Text>
+          <Image style={[styles.listImg]} source={zoomItem.img} />
+          {/*} <Text style={[styles.zoomItemCardHeader]}>{zoomItem.title}</Text>
           <Text style={[styles.zoomItemCardText]}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ea
             illo laborum deleniti suscipit quisquam, numquam fugiat magnam ut
             tempore iste distinctio, necessitatibus in rerum. Alias excepturi
             cumque illum magnam.
-          </Text>
-        </View>
+          </Text>*/}
+        </Animated.View>
       ) : null}
       <View style={[styles.container, styles[`container${theme}`]]}>
         <View style={styles.headingWrap}>

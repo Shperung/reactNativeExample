@@ -35,7 +35,12 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderLeftColor: mixins.color.white,
   },
-  listImg: {width: '100%', height: '100%'},
+  listImg: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: 'contain',
+  },
   flatList: {
     flex: 1,
     paddingHorizontal: 8,
@@ -57,12 +62,13 @@ const styles = StyleSheet.create({
   },
   zoomCard: {
     position: 'absolute',
-    left: 0,
-    top: 0,
+    overflow: 'hidden',
+    // left: 0,
+    // top: 0,
     backgroundColor: mixins.color.white,
     zIndex: 2,
-    width: DEVICE_WIDTH,
-    height: DEVICE_HEIGHT,
+    // width: DEVICE_WIDTH,
+    // height: DEVICE_HEIGHT,
   },
   zoomItemCardHeader: {
     fontWeight: 'bold',
