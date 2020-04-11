@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     borderLeftColor: mixins.color.white,
   },
   listImg: {
-    width: '100%',
-    height: undefined,
-    aspectRatio: 1,
-    resizeMode: 'contain',
+    // width: '100%',
+    // height: undefined,
+    // aspectRatio: 1,
+    //resizeMode: 'cover',
   },
   flatList: {
     flex: 1,

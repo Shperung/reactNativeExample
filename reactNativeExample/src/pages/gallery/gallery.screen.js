@@ -61,8 +61,8 @@ const GalleryScreen = props => {
 
   const animatedOptions = {
     easing: Easing.sin,
-    //duration: 450,
-    duration: 3000,
+    duration: 450,
+    //duration: 3000,
   };
 
   const clearSizes = () => {
@@ -160,7 +160,16 @@ const GalleryScreen = props => {
                 <Closed width={20} height={20} fill={mixins.color.blueDark} />
               </TouchableOpacity>
             </Animated.View>
-            <Image style={[styles.listImg]} source={zoomItem.img} />
+            <Animated.Image
+              style={[
+                styles.listImg,
+                {
+                  width: zoomWidth,
+                  height: zoomWidth,
+                },
+              ]}
+              source={zoomItem.img}
+            />
             <Animated.View
               style={[
                 {
