@@ -8,6 +8,7 @@ import {
   Animated,
   FlatList,
   Image,
+  BackHandler,
 } from 'react-native';
 
 // constants
@@ -70,6 +71,13 @@ const GalleryScreen = props => {
   };
 
   useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', clearSizes);
+
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, []);
+
+  useEffect(() => {
     if (isTile) {
       setNumColumns(2);
       setImgSize(imgWidth2);
@@ -77,7 +85,6 @@ const GalleryScreen = props => {
       setNumColumns(3);
       setImgSize(imgWidth3);
     }
-    // clearSizes();
   }, [selectedTab]);
 
   const zoomWidth = zoomAnimated.interpolate({
@@ -103,6 +110,16 @@ const GalleryScreen = props => {
   const zoomScaleOpacity = zoomAnimated.interpolate({
     inputRange: [0, 1],
     outputRange: [0, 1],
+  });
+
+  const zoomHeading = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 24],
+  });
+
+  const zoomText = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 13],
   });
 
   const handlePressCard = (e, item) => {
@@ -169,22 +186,32 @@ const GalleryScreen = props => {
               ]}
               source={zoomItem.img}
             />
-            <Animated.View
+
+            <Animated.Text
               style={[
+                styles.zoomItemCardHeader,
                 {
                   opacity: zoomScaleOpacity,
-                  transform: [{scale: zoomScaleOpacity}],
+                  fontSize: zoomHeading,
                 },
               ]}>
-              <Text style={[styles.zoomItemCardHeader]}>{zoomItem.title}</Text>
-              <Text style={[styles.zoomItemCardText]}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-                ea illo laborum deleniti suscipit quisquam, numquam fugiat
-                magnam ut tempore iste distinctio, necessitatibus in rerum.
-                Alias excepturi cumque illum magnam.
-              </Text>
-            </Animated.View>
+              {zoomItem.title}
+            </Animated.Text>
+            <Animated.Text
+              style={[
+                styles.zoomItemCardText,
+                {
+                  opacity: zoomScaleOpacity,
+                  fontSize: zoomText,
+                },
+              ]}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ea
+              illo laborum deleniti suscipit quisquam, numquam fugiat magnam ut
+              tempore iste distinctio, necessitatibus in rerum. Alias excepturi
+              cumque illum magnam.
+            </Animated.Text>
           </Animated.View>
+
           <Animated.View
             style={[
               styles.backdrop,
