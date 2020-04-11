@@ -63,12 +63,17 @@ const styles = StyleSheet.create({
   zoomCard: {
     position: 'absolute',
     overflow: 'hidden',
-    // left: 0,
-    // top: 0,
     backgroundColor: mixins.color.white,
     zIndex: 2,
-    // width: DEVICE_WIDTH,
-    // height: DEVICE_HEIGHT,
+  },
+  backdrop: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    zIndex: 1,
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT,
+    backgroundColor: mixins.color.greenDark,
   },
   zoomItemCardHeader: {
     fontWeight: 'bold',
@@ -79,16 +84,20 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   closeBtn: {
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  closeBtnInner: {
     position: 'absolute',
     right: 16,
     top: 16,
-    backgroundColor: mixins.color.white,
     zIndex: 3,
+    backgroundColor: mixins.color.white,
     width: 40,
     height: 40,
     borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

@@ -61,7 +61,8 @@ const GalleryScreen = props => {
 
   const animatedOptions = {
     easing: Easing.sin,
-    duration: 600,
+    //duration: 450,
+    duration: 3000,
   };
 
   const clearSizes = () => {
@@ -77,15 +78,8 @@ const GalleryScreen = props => {
       setNumColumns(3);
       setImgSize(imgWidth3);
     }
-    clearSizes();
+    // clearSizes();
   }, [selectedTab]);
-
-  useLayoutEffect(() => {
-    Animated.timing(zoomAnimated, {
-      toValue: 1,
-      ...animatedOptions,
-    }).start();
-  }, [zoomItem, zoomLocation]);
 
   const zoomWidth = zoomAnimated.interpolate({
     inputRange: [0, 1],
@@ -107,6 +101,11 @@ const GalleryScreen = props => {
     outputRange: [zoomLocation[1] || 0, 0],
   });
 
+  const zoomScaleOpacity = zoomAnimated.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+  });
+
   const handlePressCard = (e, item) => {
     setZoomItem(item);
 
@@ -114,6 +113,11 @@ const GalleryScreen = props => {
       e.nativeEvent.pageX - e.nativeEvent.locationX + 8,
       e.nativeEvent.pageY - e.nativeEvent.locationY - 48,
     ]);
+
+    Animated.timing(zoomAnimated, {
+      toValue: 1,
+      ...animatedOptions,
+    }).start();
   };
 
   const handleCloseZoom = () => {
@@ -127,33 +131,63 @@ const GalleryScreen = props => {
   return (
     <React.Fragment>
       {zoomItem ? (
-        <Animated.View
-          style={[
-            styles.zoomCard,
-            {
-              width: zoomWidth,
-              height: zoomHeight,
-              // width: imgSize,
-              // height: imgSize,
-              // left: zoomLocation[0] || 0,
-              // top: zoomLocation[1] || 0,
-              left: zoomleft,
-              top: zoomTop,
-            },
-          ]}>
-          <TouchableOpacity style={[styles.closeBtn]} onPress={handleCloseZoom}>
-            <Closed width={20} height={20} fill={mixins.color.blueDark} />
-          </TouchableOpacity>
-          <Image style={[styles.listImg]} source={zoomItem.img} />
-          {/*} <Text style={[styles.zoomItemCardHeader]}>{zoomItem.title}</Text>
-          <Text style={[styles.zoomItemCardText]}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ea
-            illo laborum deleniti suscipit quisquam, numquam fugiat magnam ut
-            tempore iste distinctio, necessitatibus in rerum. Alias excepturi
-            cumque illum magnam.
-          </Text>*/}
-        </Animated.View>
+        <React.Fragment>
+          <Animated.View
+            style={[
+              styles.zoomCard,
+              {
+                width: zoomWidth,
+                height: zoomHeight,
+                // width: imgSize,
+                // height: imgSize,
+                // left: zoomLocation[0] || 0,
+                // top: zoomLocation[1] || 0,
+                left: zoomleft,
+                top: zoomTop,
+              },
+            ]}>
+            <Animated.View
+              style={[
+                styles.closeBtnInner,
+                {
+                  opacity: zoomScaleOpacity,
+                  transform: [{scale: zoomScaleOpacity}],
+                },
+              ]}>
+              <TouchableOpacity
+                style={styles.closeBtn}
+                onPress={handleCloseZoom}>
+                <Closed width={20} height={20} fill={mixins.color.blueDark} />
+              </TouchableOpacity>
+            </Animated.View>
+            <Image style={[styles.listImg]} source={zoomItem.img} />
+            <Animated.View
+              style={[
+                {
+                  opacity: zoomScaleOpacity,
+                  transform: [{scale: zoomScaleOpacity}],
+                },
+              ]}>
+              <Text style={[styles.zoomItemCardHeader]}>{zoomItem.title}</Text>
+              <Text style={[styles.zoomItemCardText]}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
+                ea illo laborum deleniti suscipit quisquam, numquam fugiat
+                magnam ut tempore iste distinctio, necessitatibus in rerum.
+                Alias excepturi cumque illum magnam.
+              </Text>
+            </Animated.View>
+          </Animated.View>
+          <Animated.View
+            style={[
+              styles.backdrop,
+              {
+                opacity: zoomScaleOpacity,
+              },
+            ]}
+          />
+        </React.Fragment>
       ) : null}
+
       <View style={[styles.container, styles[`container${theme}`]]}>
         <View style={styles.headingWrap}>
           <View style={[styles.heading, styles[`heading${theme}`]]}>
