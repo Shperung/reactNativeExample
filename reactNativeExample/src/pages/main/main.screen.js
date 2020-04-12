@@ -146,9 +146,48 @@ const MainScreen = props => {
         <Animated.View
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
-            {[...new Array(3)].map((item, i) => (
-              <InfoBlock key={`a-${i}`} index={i} />
-            ))}
+            <InfoBlock
+              title="Transition"
+              to="TransitionSlideFromRightIOS"
+              text="SlideFromRightIOS"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionModalSlideFromBottomIOS"
+              text="ModalSlideFromBottomIOS"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionModalPresentationIOS"
+              text="ModalPresentationIOS"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionFadeFromBottomAndroid"
+              text="FadeFromBottomAndroid"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionRevealFromBottomAndroid"
+              text="RevealFromBottomAndroid"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionDefaultTransition"
+              text="DefaultTransition"
+              navigation={navigation}
+            />
+            <InfoBlock
+              title="Transition"
+              to="TransitionModalTransition"
+              text="ModalTransition"
+              navigation={navigation}
+            />
           </View>
 
           <View style={styles.tabs}>

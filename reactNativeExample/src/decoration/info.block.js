@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Easing, Animated, View, Text} from 'react-native';
+import {Easing, Animated, View, Text, TouchableOpacity} from 'react-native';
 
 // assets
 import AvatarImage from '../app/img/avatar.jpg';
@@ -10,7 +10,14 @@ import AvatarBlock from '../avatar/avatar.block';
 // styles
 import styles from './info.block.style';
 
-const InfoBlock = ({index}) => {
+const InfoBlock = props => {
+  const {
+    navigation,
+    to,
+    title = 'Lorem Ipsum',
+    text = 'Lorem ipsum dolor sit amet',
+    index,
+  } = props;
   const [transitionYTopDelay] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -29,7 +36,7 @@ const InfoBlock = ({index}) => {
     <Animated.View
       style={[
         styles.block,
-        {
+        index && {
           transform: [
             {
               translateY: transitionYTopDelay.interpolate({
@@ -40,13 +47,17 @@ const InfoBlock = ({index}) => {
           ],
         },
       ]}>
-      <AvatarBlock />
-      <View style={styles.infoTextBlock}>
-        <Text style={styles.textHeading}>Lorem Ipsum</Text>
-        <Text numberOfLines={1} style={styles.textSmall}>
-          Lorem ipsum dolor sit amet
-        </Text>
-      </View>
+      <TouchableOpacity
+        style={styles.blockButton}
+        onPress={() => (navigation && to ? navigation.navigate(to) : null)}>
+        <AvatarBlock />
+        <View style={styles.infoTextBlock}>
+          <Text style={styles.textHeading}>{title}</Text>
+          <Text numberOfLines={1} style={styles.textSmall}>
+            {text}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </Animated.View>
   );
 };

@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     elevation: 8,
     backgroundColor: mixins.color.white06,
   },
+  blockButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
   textHeading: {
     fontWeight: 'bold',
     fontSize: 17,

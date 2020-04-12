@@ -9,7 +9,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -19,6 +19,7 @@ import LoaderScreen from './src/pages/loader/loader.screen';
 import SettingsScreen from './src/pages/settings/settings.screen';
 import TabsScreen from './src/pages/tabs/tabs.screen';
 import GalleryScreen from './src/pages/gallery/gallery.screen.js';
+import TransitionScreen from './src/pages/transitions/transition.screen.js';
 
 // icons
 import HomeIcon from './src/svg/assets/home.svg';
@@ -139,49 +140,94 @@ function Tabs() {
   );
 }
 
-const App = () => {
-  // const {theme} = useContext(ThemeContext);
-  // const isDark = theme === DARK_THEME;
-
-  // console.log('App theme', theme);
-
+function MainStack() {
   return (
-    <ThemeProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Tabs"
-          screenOptions={{
-            // глобально для Stack.Navigator
-            headerStyle: {
-              backgroundColor:
-                useContext(ThemeContext).theme === DARK_THEME
-                  ? mixins.color.green
-                  : mixins.color.greenDark,
-            },
-            headerTintColor: mixins.color.white,
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}>
-          <Stack.Screen
-            name="Tabs"
-            component={Tabs}
-            options={{title: 'Cat bio', ...headerStyle}}
-          />
-          {/*} <Stack.Screen
-            name="Main"
-            component={MainScreen}
-            options={{title: 'Cat bio', ...headerStyle}}
-          />
-          <Stack.Screen
-            name="Gallery"
-            component={GalleryScreen}
-            options={{title: 'Gallery', ...headerStyle}}
-          />*/}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </ThemeProvider>
+    <Stack.Navigator
+      initialRouteName="Tabs"
+      screenOptions={{
+        // глобально для Stack.Navigator
+        headerStyle: {
+          backgroundColor:
+            useContext(ThemeContext).theme === DARK_THEME
+              ? mixins.color.green
+              : mixins.color.greenDark,
+        },
+        headerTintColor: mixins.color.white,
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen
+        name="Tabs"
+        component={Tabs}
+        options={{title: 'Cat bio', ...headerStyle}}
+      />
+      <Stack.Screen
+        name="TransitionSlideFromRightIOS"
+        component={TransitionScreen}
+        options={{
+          title: 'SlideFromRightIOS',
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionModalSlideFromBottomIOS"
+        component={TransitionScreen}
+        options={{
+          title: 'ModalSlideFromBottomIOS',
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionModalPresentationIOS"
+        component={TransitionScreen}
+        options={{
+          title: 'ModalPresentationIOS',
+          ...TransitionPresets.ModalPresentationIOS,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionFadeFromBottomAndroid"
+        component={TransitionScreen}
+        options={{
+          title: 'ModalPresentationIOS',
+          ...TransitionPresets.FadeFromBottomAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionRevealFromBottomAndroid"
+        component={TransitionScreen}
+        options={{
+          title: 'RevealFromBottomAndroid',
+          ...TransitionPresets.RevealFromBottomAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionDefaultTransition"
+        component={TransitionScreen}
+        options={{
+          title: 'DefaultTransition',
+          ...TransitionPresets.DefaultTransition,
+        }}
+      />
+      <Stack.Screen
+        name="TransitionModalTransition"
+        component={TransitionScreen}
+        options={{
+          title: 'ModalTransition',
+          ...TransitionPresets.ModalTransition,
+        }}
+      />
+    </Stack.Navigator>
   );
-};
+}
+
+const App = () => (
+  <ThemeProvider>
+    <NavigationContainer>
+      <MainStack />
+    </NavigationContainer>
+  </ThemeProvider>
+);
 
 export default App;
