@@ -6,6 +6,7 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
   SafeAreaView,
@@ -15,100 +16,55 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import {enableScreens} from 'react-native-screens';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+enableScreens();
+
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+const Tabs = createBottomTabNavigator();
+
+const MainScreen = () => {
+  return <Text>MainScreen</Text>;
+};
+
+const CalleryScreen = () => {
+  return <Text>CalleryScreen</Text>;
+};
+
+const SettingsScreen = () => {
+  return <Text>SettingsScreen</Text>;
+};
+
+const TransitionsNavigator = () => (
+  <Stack.Navigator initialRouteName="Settings">
+    <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+  </Stack.Navigator>
+);
+
+const TabsNavigator = () => (
+  <Tabs.Navigator>
+    <Tabs.Screen name="Main" component={MainScreen} />
+    <Tabs.Screen name="Callery" component={CalleryScreen} />
+  </Tabs.Navigator>
+);
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One 1</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="TabsNavigator" component={TabsNavigator} />
+        <Drawer.Screen
+          name="TransitionsNavigator"
+          component={TransitionsNavigator}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
