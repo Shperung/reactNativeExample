@@ -12,6 +12,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {enableScreens} from 'react-native-screens';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+//import {createDrawerNavigator} from '@react-navigation/drawer';
 
 // screens
 import MainScreen from './src/pages/main/main.screen';
@@ -32,6 +33,7 @@ import UtilitiesIcon from './src/svg/assets/utilities.svg';
 import mixins, {DARK_THEME} from './src/app/mixins.js';
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
 
+//const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -47,6 +49,14 @@ const headerStyle = {
 };
 
 enableScreens();
+
+// function DrawerNavigator() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="Transition" component={TransitionScreen} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 function Tabs() {
   const {theme, toggleTheme} = useContext(ThemeContext);
@@ -162,6 +172,7 @@ function MainStack() {
         component={Tabs}
         options={{title: 'Cat bio', ...headerStyle}}
       />
+
       <Stack.Screen
         name="TransitionSlideFromRightIOS"
         component={TransitionScreen}

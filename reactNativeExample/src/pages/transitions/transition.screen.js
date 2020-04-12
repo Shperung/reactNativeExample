@@ -1,15 +1,15 @@
 import React from 'react';
-import {SafeAreaView, TouchableOpacity, View, Text} from 'react-native';
+import {SafeAreaView, Button, View, Text} from 'react-native';
 
 const TransitionScreen = props => {
   const {navigation, route} = props;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{padding: 16}}>
       <Text>Transition Screen</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Go Back</Text>
-      </TouchableOpacity>
+      <View style={{margin: 16}}>
+        <Button onPress={() => navigation.goBack()} title="Go Back" />
+      </View>
     </SafeAreaView>
   );
 };
