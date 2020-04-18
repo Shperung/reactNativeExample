@@ -24,10 +24,8 @@ const SettingsScreen = (props) => {
   const {theme, toggleTheme, auto, toggleAutoTheme} = useContext(ThemeContext);
 
   const isDark = theme === DARK_THEME;
-  //
-  const handleChangeTheme = (res) => {
-    console.log('handleChangeTheme', res);
 
+  const handleChangeTheme = (res) => {
     if (!res) {
       toggleTheme(LIGHT_THEME);
     } else {
@@ -38,15 +36,6 @@ const SettingsScreen = (props) => {
   const handleSwitchAuto = () => {
     toggleAutoTheme(!auto);
   };
-
-  //   return (
-
-  //
-  //
-
-  //
-
-  //   );
 
   return (
     <View style={[styles.container, styles[`container${theme}`]]}>
@@ -76,9 +65,9 @@ const SettingsScreen = (props) => {
               styles.automaticlyBlock,
               styles[`automaticlyBlock${theme}`],
             ]}>
-            {/*   {auto ? (
-                <CheckIcon width={18} height={18} fill={mixins.color.green} />
-              ) : null}  */}
+            {auto ? (
+              <CheckIcon width={18} height={18} fill={mixins.color.green} />
+            ) : null}
           </View>
 
           <Text
