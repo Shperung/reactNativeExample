@@ -24,6 +24,12 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 enableScreens();
 
+// screens
+import SettingsScreen from './src/pages/settings/settings.screen.js';
+
+// helpers
+import ThemeContext, {ThemeProvider} from './src/app/theme-context';
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -36,15 +42,11 @@ const CalleryScreen = () => {
   return <Text>CalleryScreen</Text>;
 };
 
-const SettingsScreen = () => {
-  return <Text>SettingsScreen</Text>;
-};
-
-const TransitionsNavigator = () => (
-  <Stack.Navigator initialRouteName="Settings">
-    <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-  </Stack.Navigator>
-);
+// const TransitionsNavigator = () => (
+//   <Stack.Navigator initialRouteName="Settings">
+//     <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+//   </Stack.Navigator>
+// );
 
 const TabsNavigator = () => (
   <Tabs.Navigator>
@@ -55,15 +57,14 @@ const TabsNavigator = () => (
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="TabsNavigator" component={TabsNavigator} />
-        <Drawer.Screen
-          name="TransitionsNavigator"
-          component={TransitionsNavigator}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="TabsNavigator" component={TabsNavigator} />
+          <Drawer.Screen name="Settings" component={SettingsScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
