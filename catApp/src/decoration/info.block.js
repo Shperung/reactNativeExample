@@ -10,7 +10,7 @@ import AvatarBlock from '../avatar/avatar.block';
 // styles
 import styles from './info.block.style';
 
-const InfoBlock = props => {
+const InfoBlock = (props) => {
   const {
     navigation,
     to,

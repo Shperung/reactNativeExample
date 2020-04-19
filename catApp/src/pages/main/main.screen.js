@@ -32,7 +32,7 @@ export const WIDTH_MIN = DEVICE_WIDTH;
 
 const outputRangeOffset = (-DC_WIDTH / Math.PI) * 1.2;
 
-const MainScreen = props => {
+const MainScreen = (props) => {
   const {navigation} = props;
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
@@ -54,6 +54,7 @@ const MainScreen = props => {
   useLayoutEffect(() => {
     Animated.timing(scrollViewValue, {
       toValue: 0,
+      useNativeDriver: false,
       easing: Easing.sin,
     }).start();
   }, [scrollViewValue]);

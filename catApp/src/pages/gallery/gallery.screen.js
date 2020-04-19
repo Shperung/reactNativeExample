@@ -45,7 +45,7 @@ const DATA = [...new Array(41)].map((item, i) => {
 const imgWidth2 = DEVICE_WIDTH / 2 - 24;
 const imgWidth3 = DEVICE_WIDTH / 3 - 21;
 
-const GalleryScreen = props => {
+const GalleryScreen = (props) => {
   const {navigation, route} = props;
   const {theme} = useContext(ThemeContext);
   const isDark = theme === DARK_THEME;
@@ -132,6 +132,7 @@ const GalleryScreen = props => {
 
     Animated.timing(zoomAnimated, {
       toValue: 1,
+      useNativeDriver: false,
       ...animatedOptions,
     }).start();
   };
@@ -140,6 +141,7 @@ const GalleryScreen = props => {
     // інямую назад і чистю через n мс щоа анімаха закінчилась
     Animated.timing(zoomAnimated, {
       toValue: 0,
+      useNativeDriver: false,
       ...animatedOptions,
     }).start(() => setTimeout(() => clearSizes(), 50));
   };
@@ -254,7 +256,7 @@ const GalleryScreen = props => {
           data={DATA}
           numColumns={numColumns}
           key={numColumns}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           style={styles.flatList}
           renderItem={({item}) => (
             <View key={item.id} style={[styles.card]}>
@@ -266,7 +268,7 @@ const GalleryScreen = props => {
               {!zoomItem || zoomItem.id !== item.id ? (
                 <TouchableOpacity
                   style={[styles.cardBtn]}
-                  onPress={e => handlePressCard(e, item)}
+                  onPress={(e) => handlePressCard(e, item)}
                 />
               ) : null}
             </View>
