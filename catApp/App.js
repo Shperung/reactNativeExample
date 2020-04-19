@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import 'react-native-gesture-handler';
 import React from 'react';
 import {
@@ -30,6 +22,7 @@ import MainScreen from './src/pages/main/main.screen.js';
 import CalleryScreen from './src/pages/gallery/gallery.screen.js';
 import TabScreen from './src/pages/tabs/tabs.screen.js';
 import LoaderScreen from './src/pages/loader/loader.screen.js';
+import TransitionScreen from './src/pages/transitions/transition.screen.js';
 
 // helpers
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
@@ -38,14 +31,8 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-// const TransitionsNavigator = () => (
-//   <Stack.Navigator initialRouteName="Settings">
-//     <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
-//   </Stack.Navigator>
-// );
-
 const TabsNavigator = () => (
-  <Tabs.Navigator>
+  <Tabs.Navigator initialRouteName="Main">
     <Tabs.Screen name="Main" component={MainScreen} />
     <Tabs.Screen name="Callery" component={CalleryScreen} />
     <Tabs.Screen name="Tab" component={TabScreen} />
@@ -53,14 +40,81 @@ const TabsNavigator = () => (
   </Tabs.Navigator>
 );
 
+const TransitionsNavigator = () => (
+  <Stack.Navigator initialRouteName="Main Stack">
+    <Stack.Screen name="Main Stack" component={TabsNavigator} />
+    <Stack.Screen
+      name="TransitionSlideFromRightIOS"
+      component={TransitionScreen}
+      options={{
+        title: 'SlideFromRightIOS',
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionModalSlideFromBottomIOS"
+      component={TransitionScreen}
+      options={{
+        title: 'ModalSlideFromBottomIOS',
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionModalPresentationIOS"
+      component={TransitionScreen}
+      options={{
+        title: 'ModalPresentationIOS',
+        ...TransitionPresets.ModalPresentationIOS,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionFadeFromBottomAndroid"
+      component={TransitionScreen}
+      options={{
+        title: 'ModalPresentationIOS',
+        ...TransitionPresets.FadeFromBottomAndroid,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionRevealFromBottomAndroid"
+      component={TransitionScreen}
+      options={{
+        title: 'RevealFromBottomAndroid',
+        ...TransitionPresets.RevealFromBottomAndroid,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionDefaultTransition"
+      component={TransitionScreen}
+      options={{
+        title: 'DefaultTransition',
+        ...TransitionPresets.DefaultTransition,
+      }}
+    />
+    <Stack.Screen
+      name="TransitionModalTransition"
+      component={TransitionScreen}
+      options={{
+        title: 'ModalTransition',
+        ...TransitionPresets.ModalTransition,
+      }}
+    />
+  </Stack.Navigator>
+);
+
 const App: () => React$Node = () => {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        <Drawer.Navigator>
+        {/*<Drawer.Navigator>
           <Drawer.Screen name="Main" component={TabsNavigator} />
           <Drawer.Screen name="Settings" component={SettingsScreen} />
-        </Drawer.Navigator>
+          <Drawer.Screen
+            name="TransitionSlideFromRightIOS"
+            component={TransitionsNavigator}
+          />
+        </Drawer.Navigator>*/}
+        <TransitionsNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );
