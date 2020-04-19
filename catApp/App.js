@@ -29,6 +29,7 @@ import SettingsScreen from './src/pages/settings/settings.screen.js';
 import MainScreen from './src/pages/main/main.screen.js';
 import CalleryScreen from './src/pages/gallery/gallery.screen.js';
 import TabScreen from './src/pages/tabs/tabs.screen.js';
+import LoaderScreen from './src/pages/loader/loader.screen.js';
 
 // helpers
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
@@ -48,6 +49,7 @@ const TabsNavigator = () => (
     <Tabs.Screen name="Main" component={MainScreen} />
     <Tabs.Screen name="Callery" component={CalleryScreen} />
     <Tabs.Screen name="Tab" component={TabScreen} />
+    <Tabs.Screen name="Loader" component={LoaderScreen} />
   </Tabs.Navigator>
 );
 
