@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 18,
     color: mixins.color.black,
-    paddingBottom: 24,
+    paddingLeft: 24,
     fontWeight: 'bold',
   },
   headingDARK: {
@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
   },
   infoItemHeaderDARK: {
     color: mixins.color.grayLight,
+  },
+  openDrawerWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
 });
 

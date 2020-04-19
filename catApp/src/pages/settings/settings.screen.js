@@ -16,11 +16,13 @@ import ThemeContext from '../../app/theme-context';
 
 // icon
 import CheckIcon from '../../svg/assets/check-icon.svg';
+import ChevronRight from '../../svg/assets/chevron-right.svg';
 
 // styles
 import styles from './settings.screen.style';
 
 const SettingsScreen = (props) => {
+  const {navigation} = props;
   const {theme, toggleTheme, auto, toggleAutoTheme} = useContext(ThemeContext);
 
   const isDark = theme === DARK_THEME;
@@ -39,9 +41,16 @@ const SettingsScreen = (props) => {
 
   return (
     <View style={[styles.container, styles[`container${theme}`]]}>
-      <Text style={[styles.heading, styles[`heading${theme}`]]}>
-        SettingsScreen
-      </Text>
+      <View style={styles.openDrawerWrap}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => navigation.openDrawer()}>
+          <ChevronRight width={18} height={18} fill={mixins.color.green} />
+        </TouchableOpacity>
+        <Text style={[styles.heading, styles[`heading${theme}`]]}>
+          SettingsScreen
+        </Text>
+      </View>
 
       <View style={[styles.item, styles[`item${theme}`]]}>
         <Text style={[styles.itemText, styles[`itemText${theme}`]]}>

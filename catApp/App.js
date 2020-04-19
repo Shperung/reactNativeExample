@@ -116,12 +116,45 @@ const TabsNavigator = () => {
   );
 };
 
-const DrawerNavigator = () => (
-  <Drawer.Navigator>
-    <Drawer.Screen name="Tab" component={TabsNavigator} />
-    <Drawer.Screen name="Settings" component={SettingsScreen} />
-  </Drawer.Navigator>
-);
+const DrawerNavigator = () => {
+  const {theme, toggleTheme} = useContext(ThemeContext);
+  const isDark = theme === DARK_THEME;
+  return (
+    <Drawer.Navigator
+      drawerStyle={{
+        backgroundColor: isDark ? mixins.color.green : mixins.color.greenDark,
+        width: 200,
+      }}
+      drawerContentOptions={{
+        activeTintColor: mixins.color.white,
+        inactiveTintColor: mixins.color.grayLight09,
+        itemStyle: {
+          backgroundColor: 'transparent',
+        },
+      }}
+      hideStatusBar
+      overlayColor={mixins.color.greenDark06}>
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({color}) => (
+            <HomeIcon width={24} height={24} fill={color} />
+          ),
+        }}
+        name="Main"
+        component={TabsNavigator}
+      />
+      <Drawer.Screen
+        options={{
+          drawerIcon: ({color}) => (
+            <SettingsIcon width={24} height={24} fill={color} />
+          ),
+        }}
+        name="Settings"
+        component={SettingsScreen}
+      />
+    </Drawer.Navigator>
+  );
+};
 
 const MainNavigator = () => (
   <Stack.Navigator

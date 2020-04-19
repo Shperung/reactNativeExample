@@ -46,8 +46,9 @@ const mixins = {
     black: '#000',
     orange: '#FBCB69',
     yellow: '#ffa21f',
-    green: '#0b842e',
+    green: '#08521e',
     greenDark: '#00220c',
+    greenDark06: '#00220c80',
   },
   font: {
     largeFont: 28,
