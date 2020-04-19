@@ -27,6 +27,7 @@ enableScreens();
 // screens
 import SettingsScreen from './src/pages/settings/settings.screen.js';
 import MainScreen from './src/pages/main/main.screen.js';
+import CalleryScreen from './src/pages/gallery/gallery.screen.js';
 
 // helpers
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
@@ -34,10 +35,6 @@ import ThemeContext, {ThemeProvider} from './src/app/theme-context';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
-
-const CalleryScreen = () => {
-  return <Text>CalleryScreen</Text>;
-};
 
 // const TransitionsNavigator = () => (
 //   <Stack.Navigator initialRouteName="Settings">
