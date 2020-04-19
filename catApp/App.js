@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,24 +25,121 @@ import LoaderScreen from './src/pages/loader/loader.screen.js';
 import TransitionScreen from './src/pages/transitions/transition.screen.js';
 
 // helpers
+import mixins, {DARK_THEME} from './src/app/mixins.js';
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
+
+// icons
+import HomeIcon from './src/svg/assets/home.svg';
+import CoinsIcon from './src/svg/assets/coins.svg';
+import LoadingIcon from './src/svg/assets/loading.svg';
+import SettingsIcon from './src/svg/assets/settings.svg';
+import UtilitiesIcon from './src/svg/assets/utilities.svg';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
-const TabsNavigator = () => (
-  <Tabs.Navigator initialRouteName="Main">
-    <Tabs.Screen name="Main" component={MainScreen} />
-    <Tabs.Screen name="Callery" component={CalleryScreen} />
-    <Tabs.Screen name="Tab" component={TabScreen} />
-    <Tabs.Screen name="Loader" component={LoaderScreen} />
-  </Tabs.Navigator>
+const TabsNavigator = () => {
+  const {theme, toggleTheme} = useContext(ThemeContext);
+  const isDark = theme === DARK_THEME;
+
+  return (
+    <Tabs.Navigator
+      tabBarOptions={{
+        activeTintColor: isDark
+          ? mixins.color.grayLight
+          : mixins.color.greenDark,
+        inactiveBackgroundColor: isDark
+          ? mixins.color.greenDark
+          : mixins.color.grayLight,
+        activeBackgroundColor: isDark
+          ? mixins.color.greenDark
+          : mixins.color.grayLight,
+      }}>
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({color}) => (
+            <HomeIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+        name="Main"
+        component={MainScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({color}) => (
+            <CoinsIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+        name="Callery"
+        component={CalleryScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({color}) => (
+            <UtilitiesIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+        name="Tab"
+        component={TabScreen}
+      />
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({color}) => (
+            <LoadingIcon
+              width={24}
+              height={24}
+              fill={color}
+              style={{marginTop: 4}}
+            />
+          ),
+        }}
+        name="Loader"
+        component={LoaderScreen}
+      />
+    </Tabs.Navigator>
+  );
+};
+
+const DrawerNavigator = () => (
+  <Drawer.Navigator>
+    <Drawer.Screen name="Tab" component={TabsNavigator} />
+    <Drawer.Screen name="Settings" component={SettingsScreen} />
+  </Drawer.Navigator>
 );
 
-const TransitionsNavigator = () => (
-  <Stack.Navigator initialRouteName="Main Stack">
-    <Stack.Screen name="Main Stack" component={TabsNavigator} />
+const MainNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      // глобально для Stack.Navigator
+      headerStyle: {
+        backgroundColor:
+          useContext(ThemeContext).theme === DARK_THEME
+            ? mixins.color.green
+            : mixins.color.greenDark,
+      },
+      headerTintColor: mixins.color.white,
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }}
+    initialRouteName="Main Stack">
+    <Stack.Screen name="Main Stack" component={DrawerNavigator} />
     <Stack.Screen
       name="TransitionSlideFromRightIOS"
       component={TransitionScreen}
@@ -102,19 +199,11 @@ const TransitionsNavigator = () => (
   </Stack.Navigator>
 );
 
-const App: () => React$Node = () => {
+const App = () => {
   return (
     <ThemeProvider>
       <NavigationContainer>
-        {/*<Drawer.Navigator>
-          <Drawer.Screen name="Main" component={TabsNavigator} />
-          <Drawer.Screen name="Settings" component={SettingsScreen} />
-          <Drawer.Screen
-            name="TransitionSlideFromRightIOS"
-            component={TransitionsNavigator}
-          />
-        </Drawer.Navigator>*/}
-        <TransitionsNavigator />
+        <MainNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );
