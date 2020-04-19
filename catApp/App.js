@@ -232,12 +232,30 @@ const MainNavigator = () => (
   </Stack.Navigator>
 );
 
+const Navigation = () => {
+  const {theme, toggleTheme} = useContext(ThemeContext);
+  const isDark = theme === DARK_THEME;
+
+  return (
+    <NavigationContainer
+      theme={{
+        dark: isDark,
+        colors: {
+          background: isDark ? mixins.color.greenDark : mixins.color.grayLight,
+          card: isDark ? mixins.color.greenDark : mixins.color.grayLight,
+          text: isDark ? mixins.color.white : mixins.color.black,
+          border: mixins.color.greenDark06,
+        },
+      }}>
+      <MainNavigator />
+    </NavigationContainer>
+  );
+};
+
 const App = () => {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <MainNavigator />
-      </NavigationContainer>
+      <Navigation />
     </ThemeProvider>
   );
 };
