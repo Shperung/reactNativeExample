@@ -26,6 +26,7 @@ enableScreens();
 
 // screens
 import SettingsScreen from './src/pages/settings/settings.screen.js';
+import MainScreen from './src/pages/main/main.screen.js';
 
 // helpers
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
@@ -33,10 +34,6 @@ import ThemeContext, {ThemeProvider} from './src/app/theme-context';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
-
-const MainScreen = () => {
-  return <Text>MainScreen</Text>;
-};
 
 const CalleryScreen = () => {
   return <Text>CalleryScreen</Text>;
@@ -60,7 +57,7 @@ const App: () => React$Node = () => {
     <ThemeProvider>
       <NavigationContainer>
         <Drawer.Navigator>
-          <Drawer.Screen name="TabsNavigator" component={TabsNavigator} />
+          <Drawer.Screen name="Main" component={TabsNavigator} />
           <Drawer.Screen name="Settings" component={SettingsScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
