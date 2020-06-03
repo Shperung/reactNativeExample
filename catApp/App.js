@@ -25,7 +25,11 @@ import LoaderScreen from './src/pages/loader/loader.screen.js';
 import TransitionScreen from './src/pages/transitions/transition.screen.js';
 
 // helpers
-import mixins, {DARK_THEME} from './src/app/mixins.js';
+import mixins, {
+  DARK_THEME,
+  DEVICE_WIDTH,
+  DEVICE_HEIGHT,
+} from './src/app/mixins.js';
 import ThemeContext, {ThemeProvider} from './src/app/theme-context';
 
 // icons
@@ -227,6 +231,38 @@ const MainNavigator = () => (
       options={{
         title: 'ModalTransition',
         ...TransitionPresets.ModalTransition,
+      }}
+    />
+    <Stack.Screen
+      name="CustomModal"
+      component={TransitionScreen}
+      options={{
+        title: 'Custom Modal',
+        cardStyle: {backgroundColor: 'transparent', opacity: 0},
+        cardOverlayEnabled: true,
+        cardStyleInterpolator: ({current: {progress}}) => ({
+          cardStyle: {
+            transform: [
+              {
+                scale: progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                }),
+              },
+            ],
+            opacity: progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+            }),
+          },
+          overlayStyle: {
+            opacity: progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 0.5],
+              extrapolate: 'clamp',
+            }),
+          },
+        }),
       }}
     />
   </Stack.Navigator>

@@ -148,6 +148,12 @@ const MainScreen = (props) => {
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
             <InfoBlock
+              title="Custom Modal"
+              to="CustomModal"
+              text="Custom Modal"
+              navigation={navigation}
+            />
+            <InfoBlock
               title="Transition"
               to="TransitionSlideFromRightIOS"
               text="SlideFromRightIOS"
