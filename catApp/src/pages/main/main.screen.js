@@ -7,7 +7,9 @@ import {
   Text,
   Animated,
   ScrollView,
+  Button 
 } from 'react-native';
+import analytics from '@react-native-firebase/analytics';
 
 // icons
 import ClosedIcon from '../../svg/assets/closed.svg';
@@ -147,6 +149,13 @@ const MainScreen = (props) => {
         <Animated.View
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
+            <Button
+              title="Add genaralevent"
+              onPress={ async () => await analytics().logEvent('genaralevent', {
+                item: 'ok'
+              }) }
+              
+            />
             <InfoBlock
               title="Custom Modal"
               to="CustomModal"
