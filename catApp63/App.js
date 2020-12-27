@@ -15,6 +15,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import * as Progress from 'react-native-progress';
 
 import {
   Header,
@@ -26,88 +27,131 @@ import {
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                2Edit <Text style={styles.highlight}>App.js</Text> to change
-                this screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Progress.Pie style={styles.progress} progress={0.4} size={50} />
+        <Progress.Pie
+          style={styles.progress}
+          progress={0.9}
+          size={50}
+          animated
+          color="green"
+        />
+        <Progress.Pie
+          style={styles.progress}
+          progress={0.9}
+          size={50}
+          animated
+          color="green"
+          unfilledColor="yellow"
+        />
+        <Progress.Pie
+          style={styles.progress}
+          progress={0.4}
+          size={50}
+          indeterminate={true}
+          color="red"
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={50}
+          indeterminate={true}
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={50}
+          indeterminate={true}
+          indeterminateAnimationDuration={3000}
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={50}
+          indeterminate={true}
+          progress={0.2}
+          color="green"
+          indeterminateAnimationDuration={3000}
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={50}
+          progress={0.9}
+          color="green"
+          borderWidth={0}
+          animated
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={80}
+          progress={0.9}
+          color="green"
+          borderWidth={0}
+          animated
+          strokeCap="round"
+          thickness={10}
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={80}
+          progress={0.9}
+          color="blue"
+          borderWidth={0}
+          animated
+          strokeCap="round"
+          thickness={10}
+          // showsText
+          allowFontScaling
+        />
+        <Progress.Circle
+          style={styles.progress}
+          size={80}
+          progress={0.8}
+          color="red"
+          borderWidth={0}
+          animated
+          direction="counter-clockwise"
+          strokeCap="round"
+          thickness={10}
+          // showsText
+          allowFontScaling
+          duration={3000}
+        />
+        <Progress.CircleSnail
+          style={styles.progress}
+          size={80}
+          color={['red', 'green', 'blue']}
+        />
+        <Progress.CircleSnail
+          style={styles.progress}
+          size={90}
+          progress={1}
+          thickness={10}
+          color={['red', 'green', 'blue']}
+        />
+        <Progress.CircleSnail
+          style={styles.progress}
+          size={90}
+          progress={1}
+          thickness={10}
+          color={['blue']}
+          strokeCap="square"
+          //hidesWhenStopped={false}
+          duration={4000}
+          spinDuration={1}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    paddingTop: 60,
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  progress: {
+    margin: 16,
   },
 });
 
