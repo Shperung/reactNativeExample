@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const toasterContext = React.createContext(undefined!);
+const ToasterContext = React.createContext(undefined!);
 
 type Props = void;
 
@@ -89,9 +89,11 @@ export class ToasterProvider extends React.Component<Props, State> {
 
   render(): JSX.Element {
     return (
-      <toasterContext.Provider value={this.state.context}>
+      <ToasterContext.Provider value={this.state.context}>
         {this.props.children}
-      </toasterContext.Provider>
+      </ToasterContext.Provider>
     );
   }
 }
+
+export default ToasterContext;

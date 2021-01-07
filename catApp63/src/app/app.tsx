@@ -27,6 +27,7 @@ import TransitionScreen from '../pages/transitions/transition.screen';
 // helpers
 import mixins, {DARK_THEME, DEVICE_WIDTH, DEVICE_HEIGHT} from './mixins';
 import ThemeContext, {ThemeProvider} from '../context/theme-context';
+import ToasterContext, {ToasterProvider} from '../context/toaster-context';
 
 // icons
 import HomeIcon from '../svg/assets/home.svg';
@@ -287,7 +288,9 @@ const Navigation = () => {
 const App = () => {
   return (
     <ThemeProvider>
-      <Navigation />
+      <ToasterProvider>
+        <Navigation />
+      </ToasterProvider>
     </ThemeProvider>
   );
 };

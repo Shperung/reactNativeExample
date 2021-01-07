@@ -15,6 +15,7 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 import ThemeContext from '../../context/theme-context';
 import AnimationCircle from '../../animations/animation-circle';
 import AnimationsInterval from '../../animations/animations-intervar';
+import AnimationProgress from '../../animations/animation-progress';
 
 // styles
 import styles from './tabs.screen.style';
@@ -29,8 +30,8 @@ const tabArr = [
     label: 'Animations Interval',
   },
   {
-    unique: 'item3',
-    label: 'Item 3',
+    unique: 'animationsProgress',
+    label: 'Animations Progress',
   },
   {
     unique: 'item4',
@@ -130,6 +131,7 @@ const TabScreen = (props) => {
       <View style={styles.content}>
         {activeTab === 'circleAnimations' ? <AnimationCircle /> : null}
         {activeTab === 'animationsInterval' ? <AnimationsInterval /> : null}
+        {activeTab === 'animationsProgress' ? <AnimationProgress /> : null}
       </View>
     </View>
   );
