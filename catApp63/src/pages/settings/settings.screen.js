@@ -12,7 +12,7 @@ import {
 import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 
 // components
-import ThemeContext from '../../app/theme-context';
+import ThemeContext from '../../context/theme-context';
 
 // icon
 import CheckIcon from '../../svg/assets/check-icon.svg';

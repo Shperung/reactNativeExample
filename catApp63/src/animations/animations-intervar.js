@@ -13,7 +13,7 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../app/mixins';
 
 // helpers
 import bezier from '../helpers/bezier-easing.js';
-import ThemeContext from '../app/theme-context';
+import ThemeContext from '../context/theme-context';
 
 // styles
 import styles from './animations.styles.js';
@@ -28,7 +28,7 @@ const easeInOutBack = bezier(0.68, -0.55, 0.265, 1.55);
 // висота для анімації
 const height = 450;
 
-const AnimationsInterval = props => {
+const AnimationsInterval = (props) => {
   const [animatedHeight, setAnimatedHeight] = useState(0);
   const {theme} = useContext(ThemeContext);
   const isDark = theme === DARK_THEME;

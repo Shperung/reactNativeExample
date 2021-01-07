@@ -24,7 +24,7 @@ import {DC_WIDTH} from '../../app/constants';
 // components
 import InfoBlock from '../../decoration/info.block';
 import AvatarBlock from '../../avatar/avatar.block';
-import ThemeContext from '../../app/theme-context';
+import ThemeContext from '../../context/theme-context';
 
 // styles
 import styles from './main.screen.style.js';

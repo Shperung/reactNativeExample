@@ -21,7 +21,7 @@ import mixins, {
 import {avatars} from '../../avatar/avatar.block.js';
 
 // components
-import ThemeContext from '../../app/theme-context';
+import ThemeContext from '../../context/theme-context';
 import AvatarBlock from '../../avatar/avatar.block';
 
 // icon

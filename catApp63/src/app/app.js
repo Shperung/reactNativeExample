@@ -26,7 +26,7 @@ import TransitionScreen from '../pages/transitions/transition.screen.js';
 
 // helpers
 import mixins, {DARK_THEME, DEVICE_WIDTH, DEVICE_HEIGHT} from './mixins.js';
-import ThemeContext, {ThemeProvider} from './theme-context';
+import ThemeContext, {ThemeProvider} from '../context/theme-context';
 
 // icons
 import HomeIcon from '../svg/assets/home.svg';

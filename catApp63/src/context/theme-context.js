@@ -2,7 +2,7 @@ import React, {useState, useLayoutEffect, useEffect} from 'react';
 //import {useDarkMode} from 'react-native-dark-mode';
 
 // constants
-import {LIGHT_THEME, DARK_THEME} from './mixins';
+import {LIGHT_THEME, DARK_THEME} from '../app/mixins';
 
 const ThemeContext = React.createContext({
   theme: LIGHT_THEME,

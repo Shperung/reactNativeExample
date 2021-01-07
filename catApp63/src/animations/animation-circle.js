@@ -6,7 +6,7 @@ import CatIcon from '../svg/assets/cat.svg';
 
 // constants
 import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../app/mixins';
-import ThemeContext from '../app/theme-context';
+import ThemeContext from '../context/theme-context';
 
 // styles
 import styles from './animations.styles';
@@ -24,7 +24,7 @@ const offset = catSize / 2;
 let f = 0;
 const angle = (2 * Math.PI) / 180; // вугол
 
-const AnimationCircle = props => {
+const AnimationCircle = (props) => {
   const [left, setLeft] = useState(0);
   const [top, setTop] = useState(0);
 
