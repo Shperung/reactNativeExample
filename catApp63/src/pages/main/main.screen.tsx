@@ -42,7 +42,7 @@ const MainScreen = (props) => {
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
   const {theme} = useContext(ThemeContext);
-  const {bug, info, messages} = useContext(ToasterContext);
+  const {bug, info, success, warning, messages} = useContext(ToasterContext);
 
   console.log('messages', messages);
 
@@ -206,6 +206,16 @@ const MainScreen = (props) => {
           </View>
 
           <View style={styles.tabs}>
+            <InfoBlock
+              title="success"
+              text="success"
+              onPressCallback={() => success('success', 'successHeader')}
+            />
+            <InfoBlock
+              title="warning"
+              text="warning"
+              onPressCallback={() => warning('warning', 'warningHeader')}
+            />
             <InfoBlock
               title="error"
               text="error"

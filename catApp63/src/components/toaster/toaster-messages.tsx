@@ -9,7 +9,7 @@ import {
   Easing,
 } from 'react-native';
 
-//import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 
 // contect
 import ToasterContext from '../../context/toaster-context';
@@ -18,7 +18,7 @@ import ToasterContext from '../../context/toaster-context';
 import mixins, {
   ORANGE_GRADIENT,
   BLUE_GRADIENT,
-  //GREEN_GRADIENT,
+  GREEN_GRADIENT,
   DEVICE_WIDTH,
   DEVICE_HEIGHT,
 } from '../../app/mixins';
@@ -152,7 +152,18 @@ const Toaster = (props: Props) => {
         activeOpacity={1}
         onPress={hendlePressTost}
         onPressIn={hendlePressTost}>
-        <View style={styles.messageGradient} key={message.unique}>
+        <LinearGradient
+          colors={
+            isError
+              ? ORANGE_GRADIENT
+              : isSuccess
+              ? GREEN_GRADIENT
+              : BLUE_GRADIENT
+          }
+          start={{x: 0, y: 1}}
+          end={{x: 1, y: 0}}
+          style={styles.messageGradient}
+          key={message.unique}>
           <Text style={styles.icon}>
             {isError ? '🙅‍♂️' : isSuccess ? '👍' : '☝️'}
           </Text>
@@ -178,7 +189,7 @@ const Toaster = (props: Props) => {
               {message.message}
             </Text>
           </View>
-        </View>
+        </LinearGradient>
       </TouchableOpacity>
     </Animated.View>
   );

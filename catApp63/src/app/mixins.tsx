@@ -70,12 +70,15 @@ const mixins = {
   },
 };
 
-export const BLUE_GRADIENT = ['#546BEA', 'rgba(84, 107, 234, 0.84)'];
 export const PINK_GRADIENT = ['#EB6A9F', '#FBADB4'];
 export const GRIN_GRADIENT = ['#2DC897', '#7EF192'];
 export const PURPLE_GRADIENT = ['#A665D1', '#FFBBCF'];
-export const ORANGE_GRADIENT = ['#F07590', '#FFB182'];
+
 export const GRIN_INVERT_GRADIENT = ['#7EF192', '#2DC897'];
+
+export const ORANGE_GRADIENT = ['#FBDCB8', '#FEFFBE'];
+export const BLUE_GRADIENT = ['#BFF0FF', '#8BD5FF'];
+export const GREEN_GRADIENT = ['#B8FBD7', '#DBFFBE'];
 
 const SHADOW = {
   shadowOffset: {
