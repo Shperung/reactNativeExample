@@ -18,7 +18,7 @@ import mixins, {
   IS_IOS,
   DEVICE_HEIGHT,
 } from '../../app/mixins';
-import {avatars} from '../../avatar/avatar.block.js';
+import {avatars} from '../../avatar/avatar.block';
 
 // components
 import ThemeContext from '../../context/theme-context';
@@ -30,7 +30,7 @@ import Grid3 from '../../svg/assets/grid3.svg';
 import Closed from '../../svg/assets/closed.svg';
 
 // styles
-import styles from './gallery.screen.screen.js';
+import styles from './gallery.screen.screen';
 
 const TILE = 'TILE';
 const GRID = 'GRID';

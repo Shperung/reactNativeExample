@@ -14,7 +14,7 @@ import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../../app/mixins';
 // components
 import ThemeContext from '../../context/theme-context';
 import AnimationCircle from '../../animations/animation-circle';
-import AnimationsInterval from '../../animations/animations-intervar.js';
+import AnimationsInterval from '../../animations/animations-intervar';
 
 // styles
 import styles from './tabs.screen.style';

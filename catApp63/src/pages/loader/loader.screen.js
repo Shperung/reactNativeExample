@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 //import LottieView from 'lottie-react-native';
 
-import styles from './loader.screen.style.js';
+import styles from './loader.screen.style';
 
 const LoaderScreen = (props) => {
   const {navigation, route} = props;

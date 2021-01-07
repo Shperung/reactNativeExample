@@ -17,15 +17,15 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 enableScreens();
 
 // screens
-import SettingsScreen from '../pages/settings/settings.screen.js';
-import MainScreen from '../pages/main/main.screen.js';
-import CalleryScreen from '../pages/gallery/gallery.screen.js';
-import TabScreen from '../pages/tabs/tabs.screen.js';
-import LoaderScreen from '../pages/loader/loader.screen.js';
-import TransitionScreen from '../pages/transitions/transition.screen.js';
+import SettingsScreen from '../pages/settings/settings.screen';
+import MainScreen from '../pages/main/main.screen';
+import CalleryScreen from '../pages/gallery/gallery.screen';
+import TabScreen from '../pages/tabs/tabs.screen';
+import LoaderScreen from '../pages/loader/loader.screen';
+import TransitionScreen from '../pages/transitions/transition.screen';
 
 // helpers
-import mixins, {DARK_THEME, DEVICE_WIDTH, DEVICE_HEIGHT} from './mixins.js';
+import mixins, {DARK_THEME, DEVICE_WIDTH, DEVICE_HEIGHT} from './mixins';
 import ThemeContext, {ThemeProvider} from '../context/theme-context';
 
 // icons

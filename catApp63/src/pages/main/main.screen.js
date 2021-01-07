@@ -18,7 +18,7 @@ import ClosedIcon from '../../svg/assets/closed.svg';
 import FlyImage from '../../app/img/fly.jpg';
 
 // constants
-import mixins, {DEVICE_WIDTH, DARK_THEME} from '../../app/mixins.js';
+import mixins, {DEVICE_WIDTH, DARK_THEME} from '../../app/mixins';
 import {DC_WIDTH} from '../../app/constants';
 
 // components
@@ -27,7 +27,7 @@ import AvatarBlock from '../../avatar/avatar.block';
 import ThemeContext from '../../context/theme-context';
 
 // styles
-import styles from './main.screen.style.js';
+import styles from './main.screen.style';
 
 export const WIDTH_MAX = DEVICE_WIDTH * 2;
 export const WIDTH_MIN = DEVICE_WIDTH;

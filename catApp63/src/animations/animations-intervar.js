@@ -12,11 +12,11 @@ import {
 import mixins, {LIGHT_THEME, DARK_THEME, IS_IOS} from '../app/mixins';
 
 // helpers
-import bezier from '../helpers/bezier-easing.js';
+import bezier from '../helpers/bezier-easing';
 import ThemeContext from '../context/theme-context';
 
 // styles
-import styles from './animations.styles.js';
+import styles from './animations.styles';
 
 let intreval = null;
 const tick = 1000 / 60; // 1секунда/60герц = 16.6 міллисекунд проходе  заміна кадра. за 16мс і кадр

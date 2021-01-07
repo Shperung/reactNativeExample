@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import mixins, {DEVICE_WIDTH} from '../../app/mixins.js';
+import mixins, {DEVICE_WIDTH} from '../../app/mixins';
 import {DC_WIDTH} from '../../app/constants';
 
 const styles = StyleSheet.create({
