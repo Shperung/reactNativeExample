@@ -13,6 +13,7 @@ import styles from './info.block.style';
 const InfoBlock = (props) => {
   const {
     navigation,
+    onPressCallback,
     to,
     title = 'Lorem Ipsum',
     text = 'Lorem ipsum dolor sit amet',
@@ -49,7 +50,13 @@ const InfoBlock = (props) => {
       ]}>
       <TouchableOpacity
         style={styles.blockButton}
-        onPress={() => (navigation && to ? navigation.navigate(to) : null)}>
+        onPress={() =>
+          navigation && to
+            ? navigation.navigate(to)
+            : onPressCallback
+            ? onPressCallback()
+            : null
+        }>
         <AvatarBlock />
         <View style={styles.infoTextBlock}>
           <Text style={styles.textHeading}>{title}</Text>

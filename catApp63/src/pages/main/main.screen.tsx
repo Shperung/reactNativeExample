@@ -24,7 +24,10 @@ import {DC_WIDTH} from '../../app/constants';
 // components
 import InfoBlock from '../../decoration/info.block';
 import AvatarBlock from '../../avatar/avatar.block';
+
+// context
 import ThemeContext from '../../context/theme-context';
+import ToasterContext from '../../context/toaster-context';
 
 // styles
 import styles from './main.screen.style';
@@ -39,6 +42,9 @@ const MainScreen = (props) => {
   const [scrollViewValue, setScrollViewValue] = useState(new Animated.Value(0));
   const [scrollY, setScrollY] = useState(new Animated.Value(0));
   const {theme} = useContext(ThemeContext);
+  const {bug, info, messages} = useContext(ToasterContext);
+
+  console.log('messages', messages);
 
   const isDark = theme === DARK_THEME;
 
@@ -149,12 +155,6 @@ const MainScreen = (props) => {
         <Animated.View
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
-            <Button
-              title="Add genaralevent"
-              // onPress={ async () => await analytics().logEvent('genaralevent', {
-              //   item: 'ok'
-              // }) }
-            />
             <InfoBlock
               title="Custom Modal"
               to="CustomModal"
@@ -206,9 +206,16 @@ const MainScreen = (props) => {
           </View>
 
           <View style={styles.tabs}>
-            {[...new Array(3)].map((item, i) => (
-              <InfoBlock key={i} index={i} />
-            ))}
+            <InfoBlock
+              title="error"
+              text="error"
+              onPressCallback={() => bug('error', 'errorHeader')}
+            />
+            <InfoBlock
+              title="info"
+              text="info"
+              onPressCallback={() => info('info', 'infoHeader')}
+            />
           </View>
         </Animated.View>
       </ScrollView>

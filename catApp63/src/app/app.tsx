@@ -29,6 +29,9 @@ import mixins, {DARK_THEME, DEVICE_WIDTH, DEVICE_HEIGHT} from './mixins';
 import ThemeContext, {ThemeProvider} from '../context/theme-context';
 import ToasterContext, {ToasterProvider} from '../context/toaster-context';
 
+// components
+import ToasterMessages from '../components/toaster/toaster-messages';
+
 // icons
 import HomeIcon from '../svg/assets/home.svg';
 import CoinsIcon from '../svg/assets/coins.svg';
@@ -290,6 +293,7 @@ const App = () => {
     <ThemeProvider>
       <ToasterProvider>
         <Navigation />
+        <ToasterMessages />
       </ToasterProvider>
     </ThemeProvider>
   );
