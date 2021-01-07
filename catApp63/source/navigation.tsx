@@ -9,6 +9,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 enableScreens();
 
+import ThemeContext, {ThemeProvider} from './providers/theme.provider';
+
 // screen
 import MainScreen from './screens/main/main.screen';
 
@@ -40,7 +42,7 @@ const MainNavigator = () => (
   </Stack.Navigator>
 );
 
-const Navigation = () => {
+const Navigator = () => {
   return (
     <NavigationContainer
       theme={{
@@ -54,6 +56,16 @@ const Navigation = () => {
       }}>
       <MainNavigator />
     </NavigationContainer>
+  );
+};
+
+const Navigation = () => {
+  return (
+    <ThemeProvider>
+      <View>
+        <Text>ttt</Text>
+      </View>
+    </ThemeProvider>
   );
 };
 
