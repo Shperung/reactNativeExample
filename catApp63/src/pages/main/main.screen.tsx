@@ -156,6 +156,28 @@ const MainScreen = (props) => {
           style={[styles.tabsWrap, {transform: [{translateX: scollWidth}]}]}>
           <View style={styles.tabs}>
             <InfoBlock
+              title="success"
+              text="success"
+              onPressCallback={() => success('success', 'successHeader')}
+            />
+            <InfoBlock
+              title="warning"
+              text="warning"
+              onPressCallback={() => warning('warning', 'warningHeader')}
+            />
+            <InfoBlock
+              title="error"
+              text="error"
+              onPressCallback={() => bug('error', 'errorHeader')}
+            />
+            <InfoBlock
+              title="info"
+              text="info"
+              onPressCallback={() => info('info', 'infoHeader')}
+            />
+          </View>
+          <View style={styles.tabs}>
+            <InfoBlock
               title="Custom Modal"
               to="CustomModal"
               text="Custom Modal"
@@ -202,29 +224,6 @@ const MainScreen = (props) => {
               to="TransitionModalTransition"
               text="ModalTransition"
               navigation={navigation}
-            />
-          </View>
-
-          <View style={styles.tabs}>
-            <InfoBlock
-              title="success"
-              text="success"
-              onPressCallback={() => success('success', 'successHeader')}
-            />
-            <InfoBlock
-              title="warning"
-              text="warning"
-              onPressCallback={() => warning('warning', 'warningHeader')}
-            />
-            <InfoBlock
-              title="error"
-              text="error"
-              onPressCallback={() => bug('error', 'errorHeader')}
-            />
-            <InfoBlock
-              title="info"
-              text="info"
-              onPressCallback={() => info('info', 'infoHeader')}
             />
           </View>
         </Animated.View>
