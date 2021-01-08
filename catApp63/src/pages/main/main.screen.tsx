@@ -158,22 +158,22 @@ const MainScreen = (props) => {
             <InfoBlock
               title="success"
               text="success"
-              onPressCallback={() => success('success', 'successHeader')}
+              onPressCallback={() => success('😺😺😺😺😺😺😺😺')}
             />
             <InfoBlock
               title="warning"
               text="warning"
-              onPressCallback={() => warning('warning', 'warningHeader')}
+              onPressCallback={() => warning('😼😼😼😼😼😼😼😼')}
             />
             <InfoBlock
               title="error"
               text="error"
-              onPressCallback={() => bug('error', 'errorHeader')}
+              onPressCallback={() => bug('🙀🙀🙀🙀🙀🙀🙀🙀')}
             />
             <InfoBlock
               title="info"
               text="info"
-              onPressCallback={() => info('info', 'infoHeader')}
+              onPressCallback={() => info('🐈🐈🐈🐈🐈🐈🐈🐈')}
             />
           </View>
           <View style={styles.tabs}>

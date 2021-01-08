@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Easing, Animated, View, Text, TouchableOpacity} from 'react-native';
+import * as Progress from 'react-native-progress';
 
 // assets
 import AvatarImage from '../app/img/avatar.jpg';

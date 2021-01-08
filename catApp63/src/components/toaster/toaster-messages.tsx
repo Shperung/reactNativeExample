@@ -8,10 +8,13 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-
+import * as Progress from 'react-native-progress';
 import LinearGradient from 'react-native-linear-gradient';
 
-// contect
+// helpers
+import bezier from '../../helpers/bezier-easing';
+
+// context
 import ToasterContext from '../../context/toaster-context';
 
 // constants
@@ -23,13 +26,16 @@ import mixins, {
   DEVICE_HEIGHT,
 } from '../../app/mixins';
 
+// components
+import ProgressBlock from './progress.block';
+
 // styles
 import styles from './toaster-messages.styles';
 
 const DURATION = 300;
 const INDENT_MULTIPLIER = 12;
 const SCALE_DIVIDER = 30;
-const LIFE_TIME = 15000;
+const LIFE_TIME = 5000;
 
 const MAX_VISIBLE_TOSTS = 3;
 
@@ -165,7 +171,7 @@ const Toaster = (props: Props) => {
           style={styles.messageGradient}
           key={message.unique}>
           <Text style={styles.icon}>
-            {isError ? '🙅‍♂️' : isSuccess ? '👍' : '☝️'}
+            {isError ? '🙀' : isSuccess ? '😸' : '🐈'}
           </Text>
           <View style={styles.textWrap}>
             <Text
@@ -174,13 +180,13 @@ const Toaster = (props: Props) => {
               {message.header ? (
                 message.header
               ) : isError ? (
-                <Text>Возникла ошибка</Text>
+                <Text>Ой</Text>
               ) : isSuccess ? (
-                <Text>Успех</Text>
+                <Text>Успіх</Text>
               ) : isInfo ? (
-                <Text>Информация</Text>
+                <Text>Інформація</Text>
               ) : isWarning ? (
-                <Text>Внимание</Text>
+                <Text>Увага</Text>
               ) : null}
             </Text>
             <Text
@@ -189,6 +195,7 @@ const Toaster = (props: Props) => {
               {message.message}
             </Text>
           </View>
+          <ProgressBlock isProgress={index === 0} />
         </LinearGradient>
       </TouchableOpacity>
     </Animated.View>
