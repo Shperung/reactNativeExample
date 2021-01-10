@@ -44,8 +44,6 @@ const MainScreen = (props) => {
   const {theme} = useContext(ThemeContext);
   const {bug, info, success, warning, messages} = useContext(ToasterContext);
 
-  console.log('messages', messages);
-
   const isDark = theme === DARK_THEME;
 
   useEffect(() => {

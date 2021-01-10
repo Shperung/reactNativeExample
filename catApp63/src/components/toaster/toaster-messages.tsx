@@ -3,7 +3,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   PanResponder,
   Animated,
   Easing,
@@ -154,8 +154,7 @@ const Toaster = (props: Props) => {
         },
       ]}
       {...panResponder.panHandlers}>
-      <TouchableOpacity
-        activeOpacity={1}
+      <TouchableWithoutFeedback
         onPress={hendlePressTost}
         onPressIn={hendlePressTost}>
         <LinearGradient
@@ -195,9 +194,9 @@ const Toaster = (props: Props) => {
               {message.message}
             </Text>
           </View>
-          <ProgressBlock isProgress={index === 0} />
+          {!isTap ? <ProgressBlock isProgress={index === 0} /> : null}
         </LinearGradient>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     </Animated.View>
   );
 };
