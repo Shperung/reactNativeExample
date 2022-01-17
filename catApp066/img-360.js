@@ -126,31 +126,48 @@ function useInterval(callback, delay) {
 
 export default function Img360() {
   const [index, setIndex] = useState(0);
+  const [isPlay, setIsPlay] = useState(false);
 
-  useInterval(() => {
-    // Your custom logic here
-    if (index >= images2.length - 1) {
-      setIndex(0);
-    } else {
-      setIndex(index + 1);
-    }
-  }, 60);
+  useEffect(() => {
+    setIsPlay(true);
+  }, []);
+
+  useInterval(
+    () => {
+      // Your custom logic here
+      if (index >= images2.length - 1) {
+        setIndex(0);
+      } else {
+        setIndex(index + 1);
+      }
+    },
+    isPlay ? 60 : null,
+  );
 
   console.log('%c --- index', 'color:green', index);
   // console.log('%c --- width', 'color:green', width);
 
+  const handlePress = () => {
+    setIsPlay(!isPlay);
+  };
+
   return (
-    <View style={styles.container}>
-      {/*{<Image360Viewer srcset={images2} width={width} height={width} />}*/}
-      {/*<Image source={images2[index]} style={[{width, height: width}]} />*/}
-      {images2.map((img, i) => (
-        <Image
-          key={`${img}${i}`}
-          source={img}
-          style={[styles.image, {opacity: index === i ? 1 : 0}]}
-        />
-      ))}
-    </View>
+    <>
+      <View style={styles.container}>
+        {/*{<Image360Viewer srcset={images2} width={width} height={width} />}*/}
+        {/*<Image source={images2[index]} style={[{width, height: width}]} />*/}
+        {images2.map((img, i) => (
+          <Image
+            key={`${img}${i}`}
+            source={img}
+            style={[styles.image, {opacity: index === i ? 1 : 0}]}
+          />
+        ))}
+      </View>
+      <View>
+        <Button title={isPlay ? 'STOP' : 'PLAY'} onPress={handlePress} />
+      </View>
+    </>
   );
 }
 
