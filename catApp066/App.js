@@ -80,7 +80,7 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}
       >
-        <Header />
+        {/*<Header />*/}
         <Button
           title="Click to invoke your native module!"
           color="#841584"

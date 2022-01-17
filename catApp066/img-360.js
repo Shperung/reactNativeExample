@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,6 +9,7 @@ import {
   View,
   NativeModules,
   Button,
+  Image,
   Dimensions,
 } from 'react-native';
 import _ from 'lodash';
@@ -103,10 +104,70 @@ const images2 = _.reverse([
 
 console.log('%c ||||| images', 'color:yellowgreen;border:1px solid', images);
 
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
+
 export default function Img360() {
+  const [index, setIndex] = useState(0);
+
+  useInterval(() => {
+    // Your custom logic here
+    if (index >= images2.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  }, 60);
+
+  console.log('%c --- index', 'color:green', index);
+  // console.log('%c --- width', 'color:green', width);
+
   return (
-    <View style={{flex: 1}}>
-      <Image360Viewer srcset={images2} width={width} height={width} />
+    <View style={styles.container}>
+      {/*{<Image360Viewer srcset={images2} width={width} height={width} />}*/}
+      {/*<Image source={images2[index]} style={[{width, height: width}]} />*/}
+      {images2.map((img, i) => (
+        <Image
+          key={`${img}${i}`}
+          source={img}
+          style={[styles.image, {opacity: index === i ? 1 : 0}]}
+        />
+      ))}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+    width,
+    height: width,
+  },
+  image: {
+    opacity: 0,
+    position: 'absolute',
+    resizeMode: 'cover',
+    top: 0,
+    left: 0,
+    width,
+    height: width,
+  },
+});
