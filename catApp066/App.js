@@ -30,6 +30,7 @@ import {
 
 // components
 import Img360 from './img-360';
+import Video from './video';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -92,6 +93,7 @@ const App: () => Node = () => {
           }}
         >
           <Img360 />
+          <Video />
         </View>
       </ScrollView>
     </SafeAreaView>
